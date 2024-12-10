@@ -1,0 +1,5 @@
+﻿10.12.2024
+
+Problematik
+Charakter auswahl durch Pfeiltasten bestätigung durch Enter. -> wurde gelöst
+Ausgewählte Rasse aus Kindklasse der Elternklasse übergeben. -> Problem !
