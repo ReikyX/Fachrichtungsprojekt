@@ -10,24 +10,25 @@ namespace Aincrad
     {
         //Speicherung von Ascii Art in einem string.
         private string titelName = @"
- ▄▄▄       ██▓ ███▄    █  ▄████▄   ██▀███   ▄▄▄      ▓█████▄ 
-▒████▄    ▓██▒ ██ ▀█   █ ▒██▀ ▀█  ▓██ ▒ ██▒▒████▄    ▒██▀ ██▌
-▒██  ▀█▄  ▒██▒▓██  ▀█ ██▒▒▓█    ▄ ▓██ ░▄█ ▒▒██  ▀█▄  ░██   █▌
-░██▄▄▄▄██ ░██░▓██▒  ▐▌██▒▒▓▓▄ ▄██▒▒██▀▀█▄  ░██▄▄▄▄██ ░▓█▄   ▌
- ▓█   ▓██▒░██░▒██░   ▓██░▒ ▓███▀ ░░██▓ ▒██▒ ▓█   ▓██▒░▒████▓ 
- ▒▒   ▓▒█░░▓  ░ ▒░   ▒ ▒ ░ ░▒ ▒  ░░ ▒▓ ░▒▓░ ▒▒   ▓▒█░ ▒▒▓  ▒ 
-  ▒   ▒▒ ░ ▒ ░░ ░░   ░ ▒░  ░  ▒     ░▒ ░ ▒░  ▒   ▒▒ ░ ░ ▒  ▒ 
-  ░   ▒    ▒ ░   ░   ░ ░ ░          ░░   ░   ░   ▒    ░ ░  ░ 
-      ░  ░ ░           ░ ░ ░         ░           ░  ░   ░    
-                         ░                            ░      
+                               ▄▄▄       ██▓ ███▄    █  ▄████▄   ██▀███   ▄▄▄      ▓█████▄ 
+                              ▒████▄    ▓██▒ ██ ▀█   █ ▒██▀ ▀█  ▓██ ▒ ██▒▒████▄    ▒██▀ ██▌
+                              ▒██  ▀█▄  ▒██▒▓██  ▀█ ██▒▒▓█    ▄ ▓██ ░▄█ ▒▒██  ▀█▄  ░██   █▌
+                              ░██▄▄▄▄██ ░██░▓██▒  ▐▌██▒▒▓▓▄ ▄██▒▒██▀▀█▄  ░██▄▄▄▄██ ░▓█▄   ▌
+                              ▓█   ▓██▒░██░▒██░   ▓██░▒ ▓███▀ ░░██▓ ▒██▒ ▓█   ▓██▒░▒████▓ 
+                              ▒▒   ▓▒█░░▓  ░ ▒░   ▒ ▒ ░ ░▒ ▒  ░░ ▒▓ ░▒▓░ ▒▒   ▓▒█░ ▒▒▓  ▒ 
+                              ▒   ▒▒ ░ ▒ ░░ ░░   ░ ▒░  ░  ▒     ░▒ ░ ▒░  ▒   ▒▒ ░ ░ ▒  ▒ 
+                              ░   ▒    ▒ ░   ░   ░ ░ ░          ░░   ░   ░   ▒    ░ ░  ░ 
+                                    ░  ░ ░           ░ ░ ░         ░           ░  ░   ░    
+                                                      ░                            ░      
 ";
 
         private string nameSpiel = "Aincrad";
-        private string beschreibungSpiel = @"Das Spiel ist ein Fantasy RPG.
-              In dem Spiel geht es darum seinen Charakter stärker zu machen. 
-              Sei es durchs Aufleveln oder Ausgrüstung wie zb. Waffen oder Rüstung.
-              Dies ist kein Fertiges Spiel! 
-              Es wird kontinuierlich daran gearbeitet das Spiel zu verbesseren und zu optimieren.";
+        private string beschreibungSpiel = @"
+                                             Das Spiel ist ein Fantasy RPG.
+                              In dem Spiel geht es darum seinen Charakter stärker zu machen. 
+                          Sei es durchs Aufleveln oder Ausgrüstung wie zb. Waffen oder Rüstung.
+                                             Dies ist kein Fertiges Spiel! 
+                   Es wird kontinuierlich daran gearbeitet das Spiel zu verbesseren und zu optimieren.";
 
 
         public void Info( string nameSpiel, string beschreibungSpiel)
@@ -39,8 +40,8 @@ namespace Aincrad
         public void SpielInfo()
         {
             Console.WriteLine(titelName);
-            Console.WriteLine($"Titel: {this.nameSpiel}");
-            Console.WriteLine($"\nBeschreibung: {this.beschreibungSpiel}");
+            Console.WriteLine($"\t\t\t\t\t\t     Titel: {this.nameSpiel}");
+            Console.WriteLine($"\n\t\t\t\t\t\t      Beschreibung:\n {this.beschreibungSpiel}");
             Console.ReadKey();
             Console.Clear();
         }

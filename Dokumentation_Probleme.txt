@@ -1,5 +1,12 @@
 ﻿10.12.2024
 
 Problematik
-Charakter auswahl durch Pfeiltasten bestätigung durch Enter. -> wurde gelöst
-Ausgewählte Rasse aus Kindklasse der Elternklasse übergeben. -> Problem !
+Charakter auswahl durch Pfeiltasten bestätigung durch Enter. -> Problem wurde gelöst
+Ausgewählte Rasse aus Kindklasse der Elternklasse übergeben. -> Problem wurde gelöst -> Übergabeparamter an Menue weiter gegeben
+
+11.12.2024
+
+Klasse Rassen aufgelöst und bei Charakter Klasse implementiert.
+Rasse durch eingabge des Players integriert.
+Je nach auswahl des Players verschiedene Attribute des Charakters.
+Star Menü implementiert.

@@ -1,3 +1,4 @@
 ﻿
 https://patorjk.com/software/taag/#p=display&f=Bloody&t=Aincrad //Titel Ascii-Art
 
+https://stackoverflow.com/questions/21917203/how-do-i-center-text-in-a-console-application //Ausgabe in der Konsole Zentrieren
