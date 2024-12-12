@@ -8,7 +8,7 @@ namespace Aincrad
 {
     internal class StartMenue
     {
-        public void StartMenueAnzeigen(Charakter meinCharakter, Ladebalken laed)
+        public void StartMenueAnzeigen(Charakter meinCharakter, ReiseMenue reiseMenue, Ladebalken laed)
         {
             int posUnten;
             bool zurueck = true;
@@ -23,7 +23,7 @@ namespace Aincrad
                 Console.SetCursorPosition((Console.WindowWidth - sMenü.Length) / 2, Console.WindowHeight - 25);
                 Console.WriteLine(sMenü);
 
-                
+
                 Console.SetCursorPosition(0, Console.WindowHeight - 10); //Positionsbestimmung in der Konsole
 
                 //Schleife für die Auswahl des Menüs
@@ -44,8 +44,8 @@ namespace Aincrad
                 }
 
                 //Auswahl des Menüs mit Pfeiltasten hoch oder runter. Mit Enter wird die Auswahl bestätigt.
-                ConsoleKeyInfo pfeilInfo = Console.ReadKey();
-                switch (pfeilInfo.Key)
+                
+                switch (Console.ReadKey().Key)
                 {
                     case ConsoleKey.UpArrow:
                         auswahlIndex = (auswahlIndex - 1 + menueAuswahl.Length) % menueAuswahl.Length;
@@ -57,7 +57,6 @@ namespace Aincrad
                         if (auswahlIndex == menueAuswahl.Length - 1)
                         {
                             Console.Clear();
-
                         }
 
                         if (auswahlIndex == 0)
@@ -66,19 +65,60 @@ namespace Aincrad
                             Console.Clear();
                             Console.SetCursorPosition((Console.WindowWidth - a.Length) / 2, Console.WindowHeight / 2);
                             Console.WriteLine(a);
+                            reiseMenue.ReiseMenueAnzeige(meinCharakter);
                             //laed.Stauts();
 
                         }
                         else if (auswahlIndex == 1)
                         {
-                            string a = "Du bist nun in der Taverne";
+                            string a = "Du bist nun in der Taverne\n";
+                            string[] taverne = {"Essen","Trinken" ,"Schlafen" ,"Zurück"};
                             Console.Clear();
                             Console.SetCursorPosition((Console.WindowWidth - a.Length) / 2, Console.WindowHeight - 25);
                             Console.WriteLine(a);
+
+                            //Schleife für die Auswahl des Menüs
+                            auswahlIndex = 0;
+                            for (int i = 0; i < taverne.Length; i++)
+                            {
+                                Console.CursorVisible = false; //Cursor unsichtbar
+                                if (i == auswahlIndex)
+                                {
+                                    Console.ForegroundColor = ConsoleColor.Black;
+                                    Console.BackgroundColor = ConsoleColor.White;
+                                    Console.WriteLine($"\t\t\t\t\t\t  >   {taverne[i]}   <  ");
+                                }
+                                else
+                                {
+                                    Console.WriteLine($"\t\t\t\t\t\t{taverne[i]}");
+                                }
+                                Console.ResetColor();
+                            }
+
+                            //Auswahl des Menüs mit Pfeiltasten hoch oder runter. Mit Enter wird die Auswahl bestätigt.
+                            switch (Console.ReadKey().Key)
+                            {
+                                case ConsoleKey.UpArrow:
+                                    auswahlIndex = (auswahlIndex - 1 + taverne.Length) % taverne.Length;
+                                    break;
+                                case ConsoleKey.DownArrow:
+                                    auswahlIndex = (auswahlIndex + 1) % taverne.Length;
+                                    break;
+                                case ConsoleKey.Enter:
+                                    if (auswahlIndex == taverne.Length - 1)
+                                    {
+                                        Console.Clear();
+                                    }
+                                    Console.ReadKey();
+                                    continue ;
+
+
+                            }
                         }
                         else if (auswahlIndex == 2)
                         {
                             string a = "Du bist in der Schmiede.";
+                            string[] schmied = { "Raparieren", "Schmieden", "Zurück" };
                             Console.Clear();
                             Console.SetCursorPosition((Console.WindowWidth - a.Length) / 2, Console.WindowHeight - 25);
                             Console.WriteLine(a);
@@ -86,6 +126,7 @@ namespace Aincrad
                         else if (auswahlIndex == 3)
                         {
                             string a = "Du bist nun beim Händler im Laden.";
+                            string[] haendler = { "Handeln", "Zurück" };
                             Console.Clear();
                             Console.SetCursorPosition((Console.WindowWidth - a.Length) / 2, Console.WindowHeight - 25);
                             Console.WriteLine(a);
@@ -93,6 +134,7 @@ namespace Aincrad
                         else if (auswahlIndex == 4)
                         {
                             string a = "Dein Inventar.";
+                            string[] inventar = {"Zurück" };
                             Console.Clear();
                             Console.SetCursorPosition((Console.WindowWidth - a.Length) / 2, Console.WindowHeight - 25);
                             Console.WriteLine(a);
@@ -100,6 +142,7 @@ namespace Aincrad
                         else if (auswahlIndex == 5)
                         {
                             string a = "Deine Reittiere/Begleiter.";
+                            string[] reittiere = {"Zurück"};
                             Console.Clear();
                             Console.SetCursorPosition((Console.WindowWidth - a.Length) / 2, Console.WindowHeight - 25);
                             Console.WriteLine(a);
@@ -126,8 +169,6 @@ namespace Aincrad
                             Console.WriteLine(a);
                             zurueck = false;
                         }
-
-                        Console.ReadKey();
                         continue;
                 }
             }

@@ -9,4 +9,7 @@ Ausgewählte Rasse aus Kindklasse der Elternklasse übergeben. -> Problem wurde 
 Klasse Rassen aufgelöst und bei Charakter Klasse implementiert.
 Rasse durch eingabge des Players integriert.
 Je nach auswahl des Players verschiedene Attribute des Charakters.
-Star Menü implementiert.
+Start Menü implementiert.
+
+Problematik 
+Durch Menüführung verliert man schnell den überblick.

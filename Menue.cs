@@ -8,17 +8,18 @@ namespace Aincrad
 {
     internal class Menue
     {
+        private int auswahlIndex = 0;
         public Menue()
         {
 
         }
 
-        public void MenueAnzeige(Charakter meinCharakter,Ladebalken laed,StartMenue startMenue) //Methode Menü
+        public void MenueAnzeige(Charakter meinCharakter, Ladebalken laed, StartMenue startMenue, ReiseMenue reiseMenue) //Methode Menü
         {
             int posUnten;
             string hauptmenue = "Hauptmenü";
             string[] menueAuswahl = { "Spiel Starten", "Einstellungen", "Infos", "Beenden" };
-            int auswahlIndex = 0;
+            auswahlIndex = 0;
 
             while (true)
             {
@@ -67,8 +68,7 @@ namespace Aincrad
                             Console.Clear();
                             Console.WriteLine("\t\t\t\t\t\t Spiel wird gestartet");
                             //laed.Stauts();
-                            startMenue.StartMenueAnzeigen(meinCharakter ,laed);
-
+                            startMenue.StartMenueAnzeigen(meinCharakter, reiseMenue, laed);
                         }
                         else if (auswahlIndex == 1)
                         {
@@ -83,7 +83,7 @@ namespace Aincrad
 
                         Console.ReadKey();
                         break;
-                }   
+                }
             }
         }
 
@@ -97,6 +97,53 @@ namespace Aincrad
             Console.WriteLine($"\t\t\t\t\t\tMana\t\t{meinCharakter.Mana}");
             Console.WriteLine($"\t\t\t\t\t\tStärke:\t\t{meinCharakter.Staerke}");
             Console.WriteLine($"\t\t\t\t\t\tIntelligenz:\t{meinCharakter.Intelligenz}");
+        }
+
+
+        private int MenueFuehrung(string[] menueAuswahl)
+        {
+            auswahlIndex = 0;
+            while (true)
+            {
+                DisplayMenue(menueAuswahl);
+                //Auswahl des Menüs mit Pfeiltasten hoch oder runter. Mit Enter wird die Auswahl bestätigt.
+                switch (Console.ReadKey(true).Key)
+                {
+                    case ConsoleKey.UpArrow:
+                        auswahlIndex = (auswahlIndex - 1 + menueAuswahl.Length) % menueAuswahl.Length;
+                        break;
+                    case ConsoleKey.DownArrow:
+                        auswahlIndex = (auswahlIndex + 1) % menueAuswahl.Length;
+                        break;
+                    case ConsoleKey.Enter:
+
+                        Console.Clear();
+                        return auswahlIndex;
+                }
+            }
+        }
+        private void DisplayMenue(string[] menueAuswahl)
+        {
+            Console.Clear();
+            Console.SetCursorPosition(0, Console.WindowHeight - 10); //Positionsbestimmung in der Konsole
+
+            //Schleife für die Auswahl des Menüs
+            for (int i = 0; i < menueAuswahl.Length; i++)
+            {
+                Console.CursorVisible = false; //Cursor unsichtbar
+                if (i == auswahlIndex)
+                {
+                    Console.ForegroundColor = ConsoleColor.Black;
+                    Console.BackgroundColor = ConsoleColor.White;
+                    Console.WriteLine($"\t\t\t\t\t\t  >   {menueAuswahl[i]}   <  ");
+                }
+                else
+                {
+                    Console.WriteLine($"\t\t\t\t\t\t{menueAuswahl[i]}");
+                }
+                Console.ResetColor();
+            }
+
         }
     }
 }

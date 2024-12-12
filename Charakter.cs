@@ -44,9 +44,10 @@ namespace Aincrad
 
         public void CharakterErstellen()
         {
+            Console.SetCursorPosition((Console.WindowWidth / 2) -12, Console.WindowHeight - 25);
             Console.ForegroundColor = ConsoleColor.Black;
             Console.BackgroundColor = ConsoleColor.White;
-            Console.WriteLine("\t\t\t\t\t\t Charakter erstellung \n");
+            Console.WriteLine(" Charakter erstellung \n");
             Console.ResetColor();
             Console.WriteLine("\t\t\t\t\t   Bitte gib deinen Player-Namen ein!");
             Console.WriteLine("\n\n\n\t\t\t\t\t\t     Player Name: \n\n");
@@ -63,7 +64,7 @@ namespace Aincrad
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine("\t\t\t\t\t\tWähle deine Rasse aus!\n");
+                Console.WriteLine("\t\t\t\t\t\tWähle deine Rasse aus!\n\n");
 
                 for (int i = 0; i < auswahlRassen.Length; i++)
                 {
@@ -81,8 +82,7 @@ namespace Aincrad
                     Console.ResetColor();
                 }
 
-                ConsoleKeyInfo pfeilInfo = Console.ReadKey();
-                switch (pfeilInfo.Key)
+                switch (Console.ReadKey().Key)
                 {
                     case ConsoleKey.UpArrow:
                         rasseIndex = (rasseIndex - 1 + auswahlRassen.Length) % auswahlRassen.Length;
@@ -94,7 +94,7 @@ namespace Aincrad
 
                         Console.Clear();
 
-                        Console.WriteLine($"\n\n\n\t\t\t\t\t\tDu hast die Klasse {auswahlRassen[rasseIndex]} ausgewählt.");
+                        Console.WriteLine($"\n\n\n\t\t\t\t\tDu hast die Klasse {auswahlRassen[rasseIndex]} ausgewählt.");
                         GewaehlteRasse = auswahlRassen[rasseIndex];
                         Console.ReadKey();
                         if (rasseIndex == 0)

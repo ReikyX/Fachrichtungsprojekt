@@ -42,7 +42,7 @@ namespace Aincrad
             Console.WriteLine(titelName);
             Console.WriteLine($"\t\t\t\t\t\t     Titel: {this.nameSpiel}");
             Console.WriteLine($"\n\t\t\t\t\t\t      Beschreibung:\n {this.beschreibungSpiel}");
-            Console.ReadKey();
+            Thread.Sleep(10000);
             Console.Clear();
         }
 
