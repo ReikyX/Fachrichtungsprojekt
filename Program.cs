@@ -10,7 +10,7 @@
             StartMenue startMenue = new StartMenue();
             ReiseMenue reiseMenue = new ReiseMenue();
 
-            
+            //Gegner.Monster();
             //laed.Stauts();
             //laed.FliegendeFestung();
             //aincrad.SpielInfo();

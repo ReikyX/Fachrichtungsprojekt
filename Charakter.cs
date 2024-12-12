@@ -139,8 +139,6 @@ namespace Aincrad
                         }
                         return;
                 }
-
-
             }
         }
     }

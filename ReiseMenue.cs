@@ -17,26 +17,19 @@ namespace Aincrad
 
             while (zurueck)
             {
-                string rMenü = "Reise Menü";
-                Console.Clear();
-                Console.SetCursorPosition((Console.WindowWidth - rMenü.Length) / 2, Console.WindowHeight - 25);
-                Console.WriteLine(rMenü);
+                string rMenue = "Reise Menü";
+                string reiseMenueZurueck = "Du kehrst zum Reise Menü zurück";
 
-                auswahlIndex = Menue.MenueFuehrung(menueAuswahl, rMenü, "");
+                auswahlIndex = Menue.MenueFuehrung(menueAuswahl, rMenue, "");
 
                 if (auswahlIndex == menueAuswahl.Length - 1)
                 {
                     Console.Clear();
                 }
-
                 if (auswahlIndex == 0)
                 {
-                    string a = "Du bist in der Stadt.";
-                    Console.Clear();
-                    Console.SetCursorPosition((Console.WindowWidth - a.Length) / 2, Console.WindowHeight / 2);
-                    Console.WriteLine(a);
-                    //laed.Stauts();
-
+                    Menue.AuswahlPlayer("Du bist in der Stadt.");
+                    
                 }
                 else if (auswahlIndex == 1)
                 {
@@ -74,6 +67,7 @@ namespace Aincrad
                     Console.WriteLine(a);
                     zurueck = false;
                 }
+                Console.ReadKey();
                 continue;
             }
         }

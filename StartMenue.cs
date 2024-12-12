@@ -19,7 +19,6 @@ namespace Aincrad
             {
                 string sMenue = "Start Menü";
                 string startMenueZurueck = "Du kehrst zum Start Menü zurück";
-                Console.Clear();
 
                 //Auswahl des Menüs mit Pfeiltasten hoch oder runter. Mit Enter wird die Auswahl bestätigt.
                 auswahlIndex = Menue.MenueFuehrung(menueAuswahl, sMenue, "");
@@ -28,7 +27,6 @@ namespace Aincrad
                 {
                     Console.Clear();
                 }
-
                 if (auswahlIndex == 0)
                 {
                     Menue.AuswahlPlayer("Du gehst auf die Reise.");
@@ -70,7 +68,6 @@ namespace Aincrad
                     string[] charUebersicht = { "Zurück" };
                     Menue.Info(meinCharakter);
                     Menue.MenueFuehrung(charUebersicht, "", startMenueZurueck);
-                    
                 }
                 else if (auswahlIndex == 7)
                 {
