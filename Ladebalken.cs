@@ -56,27 +56,27 @@ namespace Aincrad
             positionUnten = Console.WindowHeight - 2;
 
 
-            int totalSteps = 100;
+            int schritte = 100;
 
             Console.CursorVisible = false;
             Console.SetCursorPosition(0, positionUnten);
-            for (int x = 0; x <= totalSteps; x++)
+            for (int x = 0; x <= schritte; x++)
             {
 
                 Console.SetCursorPosition(0, positionUnten);
 
-                float percent = (float)x / totalSteps;
-                int progress = (int)(breite * percent);
+                float prozent = (float)x / schritte;
+                int status = (int)(breite * prozent);
 
                 Console.Write("[");
                 Console.BackgroundColor = ConsoleColor.Green;
                 Console.ForegroundColor = ConsoleColor.Gray;
 
-                Console.Write(new string(' ', progress));
+                Console.Write(new string(' ', status));
                 Console.ResetColor();
-                Console.Write(new string(' ', breite - progress));
+                Console.Write(new string(' ', breite - status));
                 Console.Write("]");
-                Console.Write($" {(int)(percent * 100)}%");
+                Console.Write($" {(int)(prozent * 100)}%");
 
                 Thread.Sleep(50);
             }

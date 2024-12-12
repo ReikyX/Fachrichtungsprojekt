@@ -4,6 +4,8 @@ Problematik
 Charakter auswahl durch Pfeiltasten bestätigung durch Enter. -> Problem wurde gelöst
 Ausgewählte Rasse aus Kindklasse der Elternklasse übergeben. -> Problem wurde gelöst -> Übergabeparamter an Menue weiter gegeben
 
+--------------------------------------------------------------------------------------------------------------------------------
+
 11.12.2024
 
 Klasse Rassen aufgelöst und bei Charakter Klasse implementiert.
@@ -13,3 +15,12 @@ Start Menü implementiert.
 
 Problematik 
 Durch Menüführung verliert man schnell den überblick.
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+12.12.2024
+
+Diagramm erstellung als Übersicht für Ablauf und verständnis.
+Menüführung überarbeitet und Probleme korrigiert.
+Menüführung zentriert und angepasst.
+Methode erstellt um redundanz zu vermeiden.

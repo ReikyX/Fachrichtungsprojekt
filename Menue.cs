@@ -3,92 +3,53 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Aincrad
 {
     internal class Menue
     {
-        private int auswahlIndex = 0;
-        public Menue()
+        public static int auswahlIndex = 0;
+        public static void MenueAnzeige(Charakter meinCharakter, Ladebalken laed, StartMenue startMenue, ReiseMenue reiseMenue) //Methode Hauptmenü
         {
-
-        }
-
-        public void MenueAnzeige(Charakter meinCharakter, Ladebalken laed, StartMenue startMenue, ReiseMenue reiseMenue) //Methode Menü
-        {
-            int posUnten;
             string hauptmenue = "Hauptmenü";
             string[] menueAuswahl = { "Spiel Starten", "Einstellungen", "Infos", "Beenden" };
             auswahlIndex = 0;
 
             while (true)
             {
-                Console.Clear();
-                Console.SetCursorPosition((Console.WindowWidth - hauptmenue.Length) / 2, Console.WindowHeight - 25);
-                Console.WriteLine(hauptmenue);
+                auswahlIndex = MenueFuehrung(menueAuswahl, hauptmenue, "");
 
-                //https://stackoverflow.com/questions/21917203/how-do-i-center-text-in-a-console-application
-                Console.SetCursorPosition(0, Console.WindowHeight - 8); //Positionsbestimmung in der Konsole
-
-                //Schleife für die Auswahl des Menüs
-                for (int i = 0; i < menueAuswahl.Length; i++)
+                if (auswahlIndex == menueAuswahl.Length - 1)
                 {
-                    Console.CursorVisible = false; //Cursor unsichtbar
-                    if (i == auswahlIndex)
-                    {
-                        Console.ForegroundColor = ConsoleColor.Black;
-                        Console.BackgroundColor = ConsoleColor.White;
-                        Console.WriteLine($"\t\t\t\t\t\t  >   {menueAuswahl[i]}   <  ");
-                    }
-                    else
-                    {
-                        Console.WriteLine($"\t\t\t\t\t\t{menueAuswahl[i]}");
-                    }
-                    Console.ResetColor();
+                    Console.Clear();
+                    return;
                 }
-
-                //Auswahl des Menüs mit Pfeiltasten hoch oder runter. Mit Enter wird die Auswahl bestätigt.
-                ConsoleKeyInfo pfeilInfo = Console.ReadKey();
-                switch (pfeilInfo.Key)
+                if (auswahlIndex == 0)
                 {
-                    case ConsoleKey.UpArrow:
-                        auswahlIndex = (auswahlIndex - 1 + menueAuswahl.Length) % menueAuswahl.Length;
-                        break;
-                    case ConsoleKey.DownArrow:
-                        auswahlIndex = (auswahlIndex + 1) % menueAuswahl.Length;
-                        break;
-                    case ConsoleKey.Enter:
-                        if (auswahlIndex == menueAuswahl.Length - 1)
-                        {
-                            Console.Clear();
-                            return;
-                        }
-                        if (auswahlIndex == 0)
-                        {
-                            Console.Clear();
-                            Console.WriteLine("\t\t\t\t\t\t Spiel wird gestartet");
-                            //laed.Stauts();
-                            startMenue.StartMenueAnzeigen(meinCharakter, reiseMenue, laed);
-                        }
-                        else if (auswahlIndex == 1)
-                        {
-                            Console.Clear();
-                            Console.WriteLine("Hier sind die Einstellungen");
-                        }
-                        else if (auswahlIndex == 2)
-                        {
-                            Console.Clear();
-                            Info(meinCharakter);
-                        }
-
-                        Console.ReadKey();
-                        break;
+                    AuswahlPlayer("Spiel wird gestartet");
+                    startMenue.StartMenueAnzeigen(meinCharakter, reiseMenue, laed);
                 }
-            }
+                else if (auswahlIndex == 1)
+                {
+                    AuswahlPlayer("Hier sind die Einstellungen");
+                }
+                else if (auswahlIndex == 2)
+                {
+                    Console.Clear();
+                    Info(meinCharakter);
+                }
+                else if (auswahlIndex == 3)
+                { 
+                break;
+                }
+                
+             }
         }
 
-        public void Info(Charakter meinCharakter)
+        public static void Info(Charakter meinCharakter)
         {
+            Console.Clear();
             Console.WriteLine("\t\t\t\t\tHier sind deine Infos zu deinem Charakter\n\n\n");
             Console.WriteLine($"\t\t\t\t\t\tName:\t\t{meinCharakter.CharakterName}");
             Console.WriteLine($"\t\t\t\t\t\tRasse:\t\t{meinCharakter.GewaehlteRasse}");
@@ -97,15 +58,43 @@ namespace Aincrad
             Console.WriteLine($"\t\t\t\t\t\tMana\t\t{meinCharakter.Mana}");
             Console.WriteLine($"\t\t\t\t\t\tStärke:\t\t{meinCharakter.Staerke}");
             Console.WriteLine($"\t\t\t\t\t\tIntelligenz:\t{meinCharakter.Intelligenz}");
+            Console.ReadKey();
         }
+        private static void MenueAnzeige(string[] menueAuswahl, string titel, int cursorPos)
+        {
+            Console.Clear();
+            //https://stackoverflow.com/questions/21917203/how-do-i-center-text-in-a-console-application
+            Console.SetCursorPosition((Console.WindowWidth - titel.Length) / 2, Console.WindowHeight - 25);//Positionsbestimmung in der Konsole
+            Console.WriteLine(titel);
+            
 
-
-        private int MenueFuehrung(string[] menueAuswahl)
+            //Schleife für die Auswahl des Menüs
+            for (int i = 0; i < menueAuswahl.Length; i++)
+            {
+                
+                
+                Console.CursorVisible = false; //Cursor unsichtbar
+                if (i == auswahlIndex)
+                {
+                    Console.ForegroundColor = ConsoleColor.Black;
+                    Console.BackgroundColor = ConsoleColor.White;
+                    Console.SetCursorPosition((Console.WindowWidth - menueAuswahl[i].Length - 10) / 2, Console.WindowHeight - 15 + cursorPos);
+                    Console.WriteLine($" >   {menueAuswahl[i]}   < ");
+                }
+                else
+                {
+                    Console.SetCursorPosition((Console.WindowWidth - menueAuswahl[i].Length) / 2, Console.WindowHeight - 15 + i);
+                    Console.WriteLine($"{menueAuswahl[i]}");
+                }
+                Console.ResetColor();
+            }
+        }
+        public static int MenueFuehrung(string[] menueAuswahl, string titel, string nachricht)
         {
             auswahlIndex = 0;
             while (true)
             {
-                DisplayMenue(menueAuswahl);
+                MenueAnzeige(menueAuswahl, titel, auswahlIndex);
                 //Auswahl des Menüs mit Pfeiltasten hoch oder runter. Mit Enter wird die Auswahl bestätigt.
                 switch (Console.ReadKey(true).Key)
                 {
@@ -116,34 +105,19 @@ namespace Aincrad
                         auswahlIndex = (auswahlIndex + 1) % menueAuswahl.Length;
                         break;
                     case ConsoleKey.Enter:
-
                         Console.Clear();
+                        Console.SetCursorPosition((Console.WindowWidth - nachricht.Length) / 2, Console.WindowHeight - 25);
+                        if (nachricht != "") Console.WriteLine(nachricht);
                         return auswahlIndex;
                 }
             }
         }
-        private void DisplayMenue(string[] menueAuswahl)
+        public static void AuswahlPlayer(string text)
         {
             Console.Clear();
-            Console.SetCursorPosition(0, Console.WindowHeight - 10); //Positionsbestimmung in der Konsole
-
-            //Schleife für die Auswahl des Menüs
-            for (int i = 0; i < menueAuswahl.Length; i++)
-            {
-                Console.CursorVisible = false; //Cursor unsichtbar
-                if (i == auswahlIndex)
-                {
-                    Console.ForegroundColor = ConsoleColor.Black;
-                    Console.BackgroundColor = ConsoleColor.White;
-                    Console.WriteLine($"\t\t\t\t\t\t  >   {menueAuswahl[i]}   <  ");
-                }
-                else
-                {
-                    Console.WriteLine($"\t\t\t\t\t\t{menueAuswahl[i]}");
-                }
-                Console.ResetColor();
-            }
-
+            Console.SetCursorPosition((Console.WindowWidth - text.Length) / 2, Console.WindowHeight - 25);
+            Console.WriteLine(text);
+            Console.ReadKey();
         }
     }
 }

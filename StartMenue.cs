@@ -10,167 +10,79 @@ namespace Aincrad
     {
         public void StartMenueAnzeigen(Charakter meinCharakter, ReiseMenue reiseMenue, Ladebalken laed)
         {
-            int posUnten;
             bool zurueck = true;
 
-            string[] menueAuswahl = { "Reisen", "Taverne", "Schmied", "Händler", "Inventar", "Reittiere/Begleiter", "Infos", "Zurück" };
+            string[] menueAuswahl = {"Reisen", "Taverne", "Schmied", "Händler", "Inventar", "Stall", "Infos", "Zurück" };
             int auswahlIndex = 0;
 
             while (zurueck)
             {
-                string sMenü = "Start Menü";
+                string sMenue = "Start Menü";
+                string startMenueZurueck = "Du kehrst zum Start Menü zurück";
                 Console.Clear();
-                Console.SetCursorPosition((Console.WindowWidth - sMenü.Length) / 2, Console.WindowHeight - 25);
-                Console.WriteLine(sMenü);
-
-
-                Console.SetCursorPosition(0, Console.WindowHeight - 10); //Positionsbestimmung in der Konsole
-
-                //Schleife für die Auswahl des Menüs
-                for (int i = 0; i < menueAuswahl.Length; i++)
-                {
-                    Console.CursorVisible = false; //Cursor unsichtbar
-                    if (i == auswahlIndex)
-                    {
-                        Console.ForegroundColor = ConsoleColor.Black;
-                        Console.BackgroundColor = ConsoleColor.White;
-                        Console.WriteLine($"\t\t\t\t\t\t  >   {menueAuswahl[i]}   <  ");
-                    }
-                    else
-                    {
-                        Console.WriteLine($"\t\t\t\t\t\t{menueAuswahl[i]}");
-                    }
-                    Console.ResetColor();
-                }
 
                 //Auswahl des Menüs mit Pfeiltasten hoch oder runter. Mit Enter wird die Auswahl bestätigt.
-                
-                switch (Console.ReadKey().Key)
+                auswahlIndex = Menue.MenueFuehrung(menueAuswahl, sMenue, "");
+
+                if (auswahlIndex == menueAuswahl.Length - 1)
                 {
-                    case ConsoleKey.UpArrow:
-                        auswahlIndex = (auswahlIndex - 1 + menueAuswahl.Length) % menueAuswahl.Length;
-                        break;
-                    case ConsoleKey.DownArrow:
-                        auswahlIndex = (auswahlIndex + 1) % menueAuswahl.Length;
-                        break;
-                    case ConsoleKey.Enter:
-                        if (auswahlIndex == menueAuswahl.Length - 1)
-                        {
-                            Console.Clear();
-                        }
-
-                        if (auswahlIndex == 0)
-                        {
-                            string a = "Du gehst auf die Reise.";
-                            Console.Clear();
-                            Console.SetCursorPosition((Console.WindowWidth - a.Length) / 2, Console.WindowHeight / 2);
-                            Console.WriteLine(a);
-                            reiseMenue.ReiseMenueAnzeige(meinCharakter);
-                            //laed.Stauts();
-
-                        }
-                        else if (auswahlIndex == 1)
-                        {
-                            string a = "Du bist nun in der Taverne\n";
-                            string[] taverne = {"Essen","Trinken" ,"Schlafen" ,"Zurück"};
-                            Console.Clear();
-                            Console.SetCursorPosition((Console.WindowWidth - a.Length) / 2, Console.WindowHeight - 25);
-                            Console.WriteLine(a);
-
-                            //Schleife für die Auswahl des Menüs
-                            auswahlIndex = 0;
-                            for (int i = 0; i < taverne.Length; i++)
-                            {
-                                Console.CursorVisible = false; //Cursor unsichtbar
-                                if (i == auswahlIndex)
-                                {
-                                    Console.ForegroundColor = ConsoleColor.Black;
-                                    Console.BackgroundColor = ConsoleColor.White;
-                                    Console.WriteLine($"\t\t\t\t\t\t  >   {taverne[i]}   <  ");
-                                }
-                                else
-                                {
-                                    Console.WriteLine($"\t\t\t\t\t\t{taverne[i]}");
-                                }
-                                Console.ResetColor();
-                            }
-
-                            //Auswahl des Menüs mit Pfeiltasten hoch oder runter. Mit Enter wird die Auswahl bestätigt.
-                            switch (Console.ReadKey().Key)
-                            {
-                                case ConsoleKey.UpArrow:
-                                    auswahlIndex = (auswahlIndex - 1 + taverne.Length) % taverne.Length;
-                                    break;
-                                case ConsoleKey.DownArrow:
-                                    auswahlIndex = (auswahlIndex + 1) % taverne.Length;
-                                    break;
-                                case ConsoleKey.Enter:
-                                    if (auswahlIndex == taverne.Length - 1)
-                                    {
-                                        Console.Clear();
-                                    }
-                                    Console.ReadKey();
-                                    continue ;
-
-
-                            }
-                        }
-                        else if (auswahlIndex == 2)
-                        {
-                            string a = "Du bist in der Schmiede.";
-                            string[] schmied = { "Raparieren", "Schmieden", "Zurück" };
-                            Console.Clear();
-                            Console.SetCursorPosition((Console.WindowWidth - a.Length) / 2, Console.WindowHeight - 25);
-                            Console.WriteLine(a);
-                        }
-                        else if (auswahlIndex == 3)
-                        {
-                            string a = "Du bist nun beim Händler im Laden.";
-                            string[] haendler = { "Handeln", "Zurück" };
-                            Console.Clear();
-                            Console.SetCursorPosition((Console.WindowWidth - a.Length) / 2, Console.WindowHeight - 25);
-                            Console.WriteLine(a);
-                        }
-                        else if (auswahlIndex == 4)
-                        {
-                            string a = "Dein Inventar.";
-                            string[] inventar = {"Zurück" };
-                            Console.Clear();
-                            Console.SetCursorPosition((Console.WindowWidth - a.Length) / 2, Console.WindowHeight - 25);
-                            Console.WriteLine(a);
-                        }
-                        else if (auswahlIndex == 5)
-                        {
-                            string a = "Deine Reittiere/Begleiter.";
-                            string[] reittiere = {"Zurück"};
-                            Console.Clear();
-                            Console.SetCursorPosition((Console.WindowWidth - a.Length) / 2, Console.WindowHeight - 25);
-                            Console.WriteLine(a);
-                        }
-                        else if (auswahlIndex == 6)
-                        {
-                            string a = "Dein Aktueller Status:\n\n";
-                            Console.Clear();
-                            Console.SetCursorPosition((Console.WindowWidth - a.Length) / 2, Console.WindowHeight / 2);
-                            Console.WriteLine(a);
-                            Console.WriteLine($"\t\t\t\t\t\tName:\t\t{meinCharakter.CharakterName}");
-                            Console.WriteLine($"\t\t\t\t\t\tRasse:\t\t{meinCharakter.GewaehlteRasse}");
-                            Console.WriteLine($"\t\t\t\t\t\tLevel:\t\t{meinCharakter.Level}/{meinCharakter.MaxLevel}");
-                            Console.WriteLine($"\t\t\t\t\t\tExp:\t\t{meinCharakter.Exp}/{meinCharakter.MaxExp}");
-                            Console.WriteLine($"\t\t\t\t\t\tMana\t\t{meinCharakter.Mana}");
-                            Console.WriteLine($"\t\t\t\t\t\tStärke:\t\t{meinCharakter.Staerke}");
-                            Console.WriteLine($"\t\t\t\t\t\tIntelligenz:\t{meinCharakter.Intelligenz}");
-                        }
-                        else if (auswahlIndex == 7)
-                        {
-                            string a = "Du kehrst ins Hauptmenü zurück.";
-                            Console.Clear();
-                            Console.SetCursorPosition((Console.WindowWidth - a.Length) / 2, Console.WindowHeight / 2);
-                            Console.WriteLine(a);
-                            zurueck = false;
-                        }
-                        continue;
+                    Console.Clear();
                 }
+
+                if (auswahlIndex == 0)
+                {
+                    Menue.AuswahlPlayer("Du gehst auf die Reise.");
+                    ReiseMenue.ReiseMenueAnzeige(meinCharakter);
+                }
+                else if (auswahlIndex == 1)
+                {
+                    Menue.AuswahlPlayer("Du bist nun in der Taverne");
+                    string[] taverne = { "Essen", "Trinken", "Schlafen", "Zurück" };
+                    Menue.MenueFuehrung(taverne, "Taverne" , startMenueZurueck);
+                }
+                else if (auswahlIndex == 2)
+                {
+                    Menue.AuswahlPlayer("Du bist nun in der Schmiede.");
+                    string[] schmied = { "Raparieren", "Schmieden", "Zurück" };
+                    Menue.MenueFuehrung(schmied, "Schmiede", startMenueZurueck);
+                }
+                else if (auswahlIndex == 3)
+                {
+                    Menue.AuswahlPlayer("Du bist nun beim Händler im Laden.");
+                    string[] haendler = { "Handeln", "Zurück" };
+                    Menue.MenueFuehrung(haendler, "Händler Laden", startMenueZurueck);
+                }
+                else if (auswahlIndex == 4)
+                {
+                    Menue.AuswahlPlayer("Du krammst in deinem Inventar");
+                    string[] inventar = { "Zurück" };
+                    Menue.MenueFuehrung(inventar, "Dein Inventar.", startMenueZurueck);
+                }
+                else if (auswahlIndex == 5)
+                {
+                    Menue.AuswahlPlayer("Du gehst in den Stall");
+                    string[] reittiere = { "Zurück" };
+                    Menue.MenueFuehrung(reittiere, "Deine Reittiere/Begleiter.", startMenueZurueck);
+                }
+                else if (auswahlIndex == 6)
+                {
+                    Menue.AuswahlPlayer("Du gelangst zur Charakterübersicht");
+                    string[] charUebersicht = { "Zurück" };
+                    Menue.Info(meinCharakter);
+                    Menue.MenueFuehrung(charUebersicht, "", startMenueZurueck);
+                    
+                }
+                else if (auswahlIndex == 7)
+                {
+                    string a = "Du kehrst ins Hauptmenü zurück.";
+                    Console.Clear();
+                    Console.SetCursorPosition((Console.WindowWidth - a.Length) / 2, Console.WindowHeight / 2);
+                    Console.WriteLine(a);
+                    zurueck = false;
+                }
+                
+                continue;
+
             }
         }
     }

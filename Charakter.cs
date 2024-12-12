@@ -44,7 +44,7 @@ namespace Aincrad
 
         public void CharakterErstellen()
         {
-            Console.SetCursorPosition((Console.WindowWidth / 2) -12, Console.WindowHeight - 25);
+            Console.SetCursorPosition((Console.WindowWidth / 2) -11, Console.WindowHeight - 25);
             Console.ForegroundColor = ConsoleColor.Black;
             Console.BackgroundColor = ConsoleColor.White;
             Console.WriteLine(" Charakter erstellung \n");
