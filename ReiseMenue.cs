@@ -30,18 +30,14 @@ namespace Aincrad
                 if (auswahlIndex == 0)
                 {
                     Menue.AuswahlPlayer("Du bist in der Stadt.");
-
-                    gegner.ZufaelligesMonster();
-
-                    Console.ReadKey();
+                    
                     
                 }
                 else if (auswahlIndex == 1)
                 {
-                    string a = "Du bist im Wald.";
-                    Console.Clear();
-                    Console.SetCursorPosition((Console.WindowWidth - a.Length) / 2, Console.WindowHeight - 25);
-                    Console.WriteLine(a);
+                    Menue.AuswahlPlayer("Du bist nun im Wald.");
+                    gegner.ZufaelligesMonster("",meinCharakter,gegner);
+                    
                 }
                 else if (auswahlIndex == 2)
                 {

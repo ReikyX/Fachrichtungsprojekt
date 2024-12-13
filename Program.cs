@@ -6,10 +6,11 @@
         {
             Ladebalken laed = new Ladebalken();
             Titel aincrad = new Titel();
+            Gegner gegner = new Gegner();
             Charakter meinCharakter = new Charakter();
             StartMenue startMenue = new StartMenue();
             ReiseMenue reiseMenue = new ReiseMenue();
-            Gegner gegner = new Gegner();
+            
             gegner.MonsterGenerieren();
 
             

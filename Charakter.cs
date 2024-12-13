@@ -9,6 +9,8 @@ namespace Aincrad
     internal class Charakter
     {
         private int level = 0;
+        private int hp = 200;
+        private int maxHp = 1000;
         private int maxLevel = 200;
         private int staerke = 20;
         private int mana = 15;
@@ -19,6 +21,8 @@ namespace Aincrad
         private string gewaehlteRasse;
 
         public int Level { get => level; set => level = value; }
+        public int Hp { get => hp; set => hp = value; }
+        public int MaxHp { get => maxHp; set => maxHp = value; }
         public int MaxLevel { get => maxLevel; set => maxLevel = value; }
         public int Staerke { get => staerke; set => staerke = value; }
         public int Mana { get => mana; set => mana = value; }
@@ -27,14 +31,16 @@ namespace Aincrad
         public string GewaehlteRasse { get => gewaehlteRasse; set => gewaehlteRasse = value; }
         public int Exp { get => exp; set => exp = value; }
         public int MaxExp { get => maxExp; set => maxExp = value; }
+        
 
         public Charakter()
         {
 
         }
-        public Charakter(int level, int staerke, int mana, int exp, int intelligenz, string charakterName, string gewaehlteRasse)
+        public Charakter(int level, int staerke, int mana, int exp, int intelligenz,int hp, string charakterName, string gewaehlteRasse)
         {
             Level = level;
+            Hp = hp;
             Staerke = staerke;
             Mana = mana;
             Intelligenz = intelligenz;
@@ -71,9 +77,11 @@ namespace Aincrad
                 Console.WriteLine("Du gelangst ins Hauptmenü.");
                 GewaehlteRasse = auswahlRassen[rasseIndex];
                 Console.ReadKey();
+                Console.Clear();
                 if (rasseIndex == 0) //Mensch
                 {
                     Level = 0;
+                    Hp = 200;
                     MaxLevel = 200;
                     Staerke = 20;
                     Mana = 15;
@@ -82,6 +90,7 @@ namespace Aincrad
                 else if (rasseIndex == 1) //Hoch-Elf
                 {
                     Level = 0;
+                    Hp = 300;
                     MaxLevel = 200;
                     Staerke = 10;
                     Mana = 30;
@@ -90,6 +99,7 @@ namespace Aincrad
                 else if (rasseIndex == 2) //Dunkel-Elf
                 {
                     Level = 0;
+                    Hp = 300;
                     MaxLevel = 200;
                     Staerke = 15;
                     Mana = 20;
@@ -98,6 +108,7 @@ namespace Aincrad
                 else if (rasseIndex == 3) //Zwerg
                 {
                     Level = 0;
+                    Hp = 300;
                     MaxLevel = 200;
                     Staerke = 30;
                     Mana = 10;
@@ -106,6 +117,7 @@ namespace Aincrad
                 else if (rasseIndex == 4) //Ork
                 {
                     Level = 0;
+                    Hp = 400;
                     MaxLevel = 200;
                     Staerke = 40;
                     Mana = 5;
@@ -114,6 +126,7 @@ namespace Aincrad
                 return;
             }
         }
+
     }
 }
 

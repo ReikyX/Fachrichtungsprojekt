@@ -53,6 +53,7 @@ namespace Aincrad
             Console.WriteLine("\t\t\t\t\tHier sind deine Infos zu deinem Charakter\n\n\n");
             Console.WriteLine($"\t\t\t\t\t\tName:\t\t{meinCharakter.CharakterName}");
             Console.WriteLine($"\t\t\t\t\t\tRasse:\t\t{meinCharakter.GewaehlteRasse}");
+            Console.WriteLine($"\t\t\t\t\t\tHP:\t\t{meinCharakter.Hp}/{meinCharakter.MaxHp}");
             Console.WriteLine($"\t\t\t\t\t\tLevel:\t\t{meinCharakter.Level}/{meinCharakter.MaxLevel}");
             Console.WriteLine($"\t\t\t\t\t\tExp:\t\t{meinCharakter.Exp}/{meinCharakter.MaxExp}");
             Console.WriteLine($"\t\t\t\t\t\tMana\t\t{meinCharakter.Mana}");

@@ -30,3 +30,5 @@ Neue Klasse erstellt für Gegner.
 
 13.12.2024
 
+Generieren von 100 zufalls Gegnern.
+Zufällig ein Gegner aufwählen.
