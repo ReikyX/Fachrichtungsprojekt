@@ -8,7 +8,7 @@ namespace Aincrad
 {
     internal class StartMenue
     {
-        public void StartMenueAnzeigen(Charakter meinCharakter, ReiseMenue reiseMenue, Ladebalken laed)
+        public void StartMenueAnzeigen(Charakter meinCharakter,Gegner gegner ,ReiseMenue reiseMenue, Ladebalken laed)
         {
             bool zurueck = true;
 
@@ -30,7 +30,7 @@ namespace Aincrad
                 if (auswahlIndex == 0)
                 {
                     Menue.AuswahlPlayer("Du gehst auf die Reise.");
-                    ReiseMenue.ReiseMenueAnzeige(meinCharakter);
+                    ReiseMenue.ReiseMenueAnzeige(meinCharakter, gegner);
                 }
                 else if (auswahlIndex == 1)
                 {

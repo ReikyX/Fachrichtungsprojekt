@@ -10,7 +10,7 @@ namespace Aincrad
     internal class Menue
     {
         public static int auswahlIndex = 0;
-        public static void MenueAnzeige(Charakter meinCharakter, Ladebalken laed, StartMenue startMenue, ReiseMenue reiseMenue) //Methode Hauptmenü
+        public static void MenueAnzeige(Charakter meinCharakter, Ladebalken laed, StartMenue startMenue, ReiseMenue reiseMenue,Gegner gegner) //Methode Hauptmenü
         {
             string hauptmenue = "Hauptmenü";
             string[] menueAuswahl = { "Spiel Starten", "Einstellungen", "Infos", "Beenden" };
@@ -28,7 +28,7 @@ namespace Aincrad
                 if (auswahlIndex == 0)
                 {
                     AuswahlPlayer("Spiel wird gestartet");
-                    startMenue.StartMenueAnzeigen(meinCharakter, reiseMenue, laed);
+                    startMenue.StartMenueAnzeigen(meinCharakter, gegner,reiseMenue, laed);
                 }
                 else if (auswahlIndex == 1)
                 {

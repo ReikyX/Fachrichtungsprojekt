@@ -24,3 +24,9 @@ Diagramm erstellung als Übersicht für Ablauf und verständnis.
 Menüführung überarbeitet und Probleme korrigiert.
 Menüführung zentriert und angepasst.
 Methode erstellt um redundanz zu vermeiden.
+Neue Klasse erstellt für Gegner.
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+13.12.2024
+

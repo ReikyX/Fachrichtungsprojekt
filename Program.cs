@@ -9,13 +9,15 @@
             Charakter meinCharakter = new Charakter();
             StartMenue startMenue = new StartMenue();
             ReiseMenue reiseMenue = new ReiseMenue();
+            Gegner gegner = new Gegner();
+            gegner.MonsterGenerieren();
 
-            //Gegner.Monster();
+            
             //laed.Stauts();
             //laed.FliegendeFestung();
             //aincrad.SpielInfo();
-            //meinCharakter.CharakterErstellen();
-            Menue.MenueAnzeige(meinCharakter, laed, startMenue, reiseMenue);
+            meinCharakter.CharakterErstellen();
+            Menue.MenueAnzeige(meinCharakter, laed, startMenue, reiseMenue,gegner);
             
             Console.ReadKey();
         }

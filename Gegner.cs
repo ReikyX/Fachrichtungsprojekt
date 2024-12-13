@@ -14,11 +14,14 @@ namespace Aincrad
         public int HP { get; set; }
         public int Staerke { get; set; }
 
-        public static void Monster()
+        public static List<Gegner> gegnerListe;
+        public static Random zufall;
+        public static int zufallGegnerIndex = 0;
+        public void MonsterGenerieren()
         {
-            List<Gegner> gegnerListe = new List<Gegner>();
-            Random zufall = new Random();
-
+            gegnerListe = new List<Gegner>();
+            zufall = new Random();
+            
             string[] gegnerNamen = {"Goblin", "Ork", "Troll", "Drache", "Skelett", "Zombie", "Vampir", "Werwolf",
             "Chimäre", "Hydra", "Oger", "Zyklop", "Harpyie", "Basilisk", "Phönix",
             "Riese", "Banshee", "Ghoul", "Lich", "Golem","Dämon"};
@@ -33,23 +36,30 @@ namespace Aincrad
                     HP = level * zufall.Next(5, 21),
                     Staerke = level + zufall.Next(1, 11)
                 });
-
             }
             gegnerListe = gegnerListe.OrderBy(g => g.Level).ToList();
 
-            foreach (var gegner in gegnerListe)
-            {
-                Console.WriteLine($"Name: {gegner.Name}\t\tLevel: {gegner.Level}\t\tHP: {gegner.HP}\t\tStärke: {gegner.Staerke}");
-            }
-
-            Gegner zufaelligerGegner = gegnerListe[zufall.Next(gegnerListe.Count)];
+            //foreach (var gegner in gegnerListe)
+            //{
+            //    Console.WriteLine($"Name: {gegner.Name}\t\tLevel: {gegner.Level}\t\tHP: {gegner.HP}\t\tStärke: {gegner.Staerke}");
+            //}
+            
         }
-
-        public static void ZufaelligerGegner()
+        public void ZufaelligesMonster()
         {
-            Random zufall = new Random();
+            zufallGegnerIndex = zufall.Next(gegnerListe.Count);
 
+            if (gegnerListe.Count > 0)  // Prüft, ob es überhaupt Gegner in der Liste gibt
+            {
+                Gegner zufaelligesMonster = gegnerListe[zufallGegnerIndex];
+                Console.WriteLine($"Zufällig ausgewähltes Monster: {zufaelligesMonster.Name}, Level: {zufaelligesMonster.Level}, HP: {zufaelligesMonster.HP}, Stärke: {zufaelligesMonster.Staerke}");
+            }
+            else
+            {
+                Console.WriteLine("Keine Gegner in der Liste.");
+            }
         }
+        
     }
 }
 

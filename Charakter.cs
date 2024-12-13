@@ -44,14 +44,16 @@ namespace Aincrad
 
         public void CharakterErstellen()
         {
-            Console.SetCursorPosition((Console.WindowWidth / 2) -11, Console.WindowHeight - 25);
+            Console.SetCursorPosition((Console.WindowWidth / 2) - 11, Console.WindowHeight - 25);
             Console.ForegroundColor = ConsoleColor.Black;
             Console.BackgroundColor = ConsoleColor.White;
-            Console.WriteLine(" Charakter erstellung \n");
+            Console.WriteLine(" Charakter erstellung ");
             Console.ResetColor();
-            Console.WriteLine("\t\t\t\t\t   Bitte gib deinen Player-Namen ein!");
-            Console.WriteLine("\n\n\n\t\t\t\t\t\t     Player Name: \n\n");
-            Console.Write("\t\t\t\t\t\t\t");
+            Console.SetCursorPosition((Console.WindowWidth / 2) - 17, Console.WindowHeight - 22);
+            Console.WriteLine("Bitte gib deinen Player-Namen ein!");
+            Console.SetCursorPosition((Console.WindowWidth / 2) - 7, Console.WindowHeight - 19);
+            Console.WriteLine("Player Name: ");
+            Console.SetCursorPosition((Console.WindowWidth / 2) - 7, Console.WindowHeight - 17);
             this.charakterName = Console.ReadLine().Trim();
             WaehleRasse();
         }
@@ -60,86 +62,58 @@ namespace Aincrad
             int rasseIndex = 0;
             string[] auswahlRassen = { "Mensch", "Hoch-Elf", "Dunkel-Elf", "Zwerg", "Ork" };
 
-
             while (true)
             {
-                Console.Clear();
-                Console.WriteLine("\t\t\t\t\t\tWähle deine Rasse aus!\n\n");
-
-                for (int i = 0; i < auswahlRassen.Length; i++)
+                rasseIndex = Menue.MenueFuehrung(auswahlRassen, "Wähle deine Rasse aus!", "");
+                Console.SetCursorPosition((Console.WindowWidth / 2) - 17, Console.WindowHeight - 28);
+                Console.WriteLine($"Du hast die Klasse {auswahlRassen[rasseIndex]} ausgewählt.");
+                Console.SetCursorPosition((Console.WindowWidth / 2) - 12, Console.WindowHeight /2);
+                Console.WriteLine("Du gelangst ins Hauptmenü.");
+                GewaehlteRasse = auswahlRassen[rasseIndex];
+                Console.ReadKey();
+                if (rasseIndex == 0) //Mensch
                 {
-                    Console.CursorVisible = false; //Cursor unsichtbar
-                    if (i == rasseIndex)
-                    {
-                        Console.ForegroundColor = ConsoleColor.Black;
-                        Console.BackgroundColor = ConsoleColor.White;
-                        Console.WriteLine($"\t\t\t\t\t\t  >   {auswahlRassen[i]}   <  ");
-                    }
-                    else
-                    {
-                        Console.WriteLine($"\t\t\t\t\t\t{auswahlRassen[i]}");
-                    }
-                    Console.ResetColor();
+                    Level = 0;
+                    MaxLevel = 200;
+                    Staerke = 20;
+                    Mana = 15;
+                    Intelligenz = 15;
                 }
-
-                switch (Console.ReadKey().Key)
+                else if (rasseIndex == 1) //Hoch-Elf
                 {
-                    case ConsoleKey.UpArrow:
-                        rasseIndex = (rasseIndex - 1 + auswahlRassen.Length) % auswahlRassen.Length;
-                        break;
-                    case ConsoleKey.DownArrow:
-                        rasseIndex = (rasseIndex + 1) % auswahlRassen.Length;
-                        break;
-                    case ConsoleKey.Enter:
-
-                        Console.Clear();
-
-                        Console.WriteLine($"\n\n\n\t\t\t\t\tDu hast die Klasse {auswahlRassen[rasseIndex]} ausgewählt.");
-                        GewaehlteRasse = auswahlRassen[rasseIndex];
-                        Console.ReadKey();
-                        if (rasseIndex == 0)
-                        {
-                            Level = 0;
-                            MaxLevel = 200;
-                            Staerke = 20;
-                            Mana = 15;
-                            Intelligenz = 15;
-                        }
-                        else if (rasseIndex == 1)
-                        {
-                            Level = 0;
-                            MaxLevel = 200;
-                            Staerke = 10;
-                            Mana = 30;
-                            Intelligenz = 25;
-                        }
-                        else if (rasseIndex == 2)
-                        {
-                            Level = 0;
-                            MaxLevel = 200;
-                            Staerke = 15;
-                            Mana = 20;
-                            Intelligenz = 20;
-                        }
-                        else if (rasseIndex == 3)
-                        {
-                            Level = 0;
-                            MaxLevel = 200;
-                            Staerke = 30;
-                            Mana = 10;
-                            Intelligenz = 10;
-                        }
-                        else if (rasseIndex == 4)
-                        {
-                            Level = 0;
-                            MaxLevel = 200;
-                            Staerke = 40;
-                            Mana = 5;
-                            Intelligenz = 5;
-                        }
-                        return;
+                    Level = 0;
+                    MaxLevel = 200;
+                    Staerke = 10;
+                    Mana = 30;
+                    Intelligenz = 25;
                 }
+                else if (rasseIndex == 2) //Dunkel-Elf
+                {
+                    Level = 0;
+                    MaxLevel = 200;
+                    Staerke = 15;
+                    Mana = 20;
+                    Intelligenz = 20;
+                }
+                else if (rasseIndex == 3) //Zwerg
+                {
+                    Level = 0;
+                    MaxLevel = 200;
+                    Staerke = 30;
+                    Mana = 10;
+                    Intelligenz = 10;
+                }
+                else if (rasseIndex == 4) //Ork
+                {
+                    Level = 0;
+                    MaxLevel = 200;
+                    Staerke = 40;
+                    Mana = 5;
+                    Intelligenz = 5;
+                }
+                return;
             }
         }
     }
 }
+

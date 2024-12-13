@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Channels;
 using System.Threading.Tasks;
 
 namespace Aincrad
 {
     internal class ReiseMenue
     {
-        public static void ReiseMenueAnzeige(Charakter meinCharakter)
+        public static void ReiseMenueAnzeige(Charakter meinCharakter,Gegner gegner)
         {
             bool zurueck = true;
 
@@ -29,6 +30,10 @@ namespace Aincrad
                 if (auswahlIndex == 0)
                 {
                     Menue.AuswahlPlayer("Du bist in der Stadt.");
+
+                    gegner.ZufaelligesMonster();
+
+                    Console.ReadKey();
                     
                 }
                 else if (auswahlIndex == 1)
