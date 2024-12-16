@@ -57,6 +57,10 @@ namespace Aincrad
                 bool weiter = true;
                 while (weiter)
                 {
+                    if(zufaelligesMonster.HP <= 0)
+                    {
+                        break;
+                    }
                     Console.SetCursorPosition((Console.WindowWidth - text.Length) - 94, Console.WindowHeight - 20);
                     Console.WriteLine($"Ein Monster ist erschienen: {zufaelligesMonster.Name}, Level: {zufaelligesMonster.Level}, HP: {zufaelligesMonster.HP}, Stärke: {zufaelligesMonster.Staerke}");
                     Console.SetCursorPosition((Console.WindowWidth - text.Length) - 83, Console.WindowHeight - 17);

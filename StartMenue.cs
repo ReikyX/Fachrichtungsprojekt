@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,11 +9,11 @@ namespace Aincrad
 {
     internal class StartMenue
     {
-        public void StartMenueAnzeigen(Charakter meinCharakter,Gegner gegner ,ReiseMenue reiseMenue, Ladebalken laed)
+        public void StartMenueAnzeigen(Charakter meinCharakter, Gegner gegner, ReiseMenue reiseMenue, Ladebalken laed)
         {
             bool zurueck = true;
 
-            string[] menueAuswahl = {"Reisen", "Taverne", "Schmied", "Händler", "Inventar", "Stall", "Infos", "Zurück" };
+            string[] menueAuswahl = { "Reisen", "Taverne", "Schmied", "Händler", "Inventar", "Stall", "Infos", "Zurück" };
             int auswahlIndex = 0;
 
             while (zurueck)
@@ -36,7 +37,26 @@ namespace Aincrad
                 {
                     Menue.AuswahlPlayer("Du bist nun in der Taverne");
                     string[] taverne = { "Essen", "Trinken", "Schlafen", "Zurück" };
-                    Menue.MenueFuehrung(taverne, "Taverne" , startMenueZurueck);
+                    int taverneAuswahl = Menue.MenueFuehrung(taverne, "Taverne", startMenueZurueck);
+                    
+                    if (taverneAuswahl == 0)
+                    {
+                        meinCharakter.Hp += 20;
+                        meinCharakter.Gold -= 10;
+                    }
+                    else if (taverneAuswahl == 1)
+                    {
+                        meinCharakter.Mana += 10;
+                        meinCharakter.Gold -= 5;
+
+                    }
+                    else if (taverneAuswahl == 2)
+                    {
+                        meinCharakter.Hp += 300;
+                        meinCharakter.Mana += 150;
+                        meinCharakter.Gold -= 50;
+                    }
+                    Console.ReadKey();
                 }
                 else if (auswahlIndex == 2)
                 {
@@ -77,10 +97,11 @@ namespace Aincrad
                     Console.WriteLine(a);
                     zurueck = false;
                 }
-                
+
                 continue;
 
             }
         }
     }
 }
+

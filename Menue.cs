@@ -56,9 +56,10 @@ namespace Aincrad
             Console.WriteLine($"\t\t\t\t\t\tHP:\t\t{meinCharakter.Hp}/{meinCharakter.MaxHp}");
             Console.WriteLine($"\t\t\t\t\t\tLevel:\t\t{meinCharakter.Level}/{meinCharakter.MaxLevel}");
             Console.WriteLine($"\t\t\t\t\t\tExp:\t\t{meinCharakter.Exp}/{meinCharakter.MaxExp}");
-            Console.WriteLine($"\t\t\t\t\t\tMana\t\t{meinCharakter.Mana}");
+            Console.WriteLine($"\t\t\t\t\t\tMana\t\t{meinCharakter.Mana}/{meinCharakter.MaxMana}");
             Console.WriteLine($"\t\t\t\t\t\tStärke:\t\t{meinCharakter.Staerke}");
             Console.WriteLine($"\t\t\t\t\t\tIntelligenz:\t{meinCharakter.Intelligenz}");
+            Console.WriteLine($"\n\t\t\t\t\t\tGold:\t\t{meinCharakter.Gold}");
             Console.ReadKey();
         }
         private static void MenueAnzeige(string[] menueAuswahl, string titel, int cursorPos)

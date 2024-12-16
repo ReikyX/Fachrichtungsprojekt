@@ -14,9 +14,11 @@ namespace Aincrad
         private int maxLevel = 200;
         private int staerke = 20;
         private int mana = 15;
+        private int maxMana = 500;
         private int intelligenz = 15;
         private int exp = 0;
         private int maxExp = 200;
+        private int gold = 100;
         private string charakterName;
         private string gewaehlteRasse;
 
@@ -31,7 +33,8 @@ namespace Aincrad
         public string GewaehlteRasse { get => gewaehlteRasse; set => gewaehlteRasse = value; }
         public int Exp { get => exp; set => exp = value; }
         public int MaxExp { get => maxExp; set => maxExp = value; }
-        
+        public int MaxMana { get => maxMana; set => maxMana = value; }
+        public int Gold { get => gold; set => gold = value; }
 
         public Charakter()
         {
@@ -82,7 +85,6 @@ namespace Aincrad
                 {
                     Level = 0;
                     Hp = 200;
-                    MaxLevel = 200;
                     Staerke = 20;
                     Mana = 15;
                     Intelligenz = 15;
@@ -91,7 +93,6 @@ namespace Aincrad
                 {
                     Level = 0;
                     Hp = 300;
-                    MaxLevel = 200;
                     Staerke = 10;
                     Mana = 30;
                     Intelligenz = 25;
@@ -100,7 +101,6 @@ namespace Aincrad
                 {
                     Level = 0;
                     Hp = 300;
-                    MaxLevel = 200;
                     Staerke = 15;
                     Mana = 20;
                     Intelligenz = 20;
@@ -109,7 +109,6 @@ namespace Aincrad
                 {
                     Level = 0;
                     Hp = 300;
-                    MaxLevel = 200;
                     Staerke = 30;
                     Mana = 10;
                     Intelligenz = 10;
@@ -118,7 +117,6 @@ namespace Aincrad
                 {
                     Level = 0;
                     Hp = 400;
-                    MaxLevel = 200;
                     Staerke = 40;
                     Mana = 5;
                     Intelligenz = 5;

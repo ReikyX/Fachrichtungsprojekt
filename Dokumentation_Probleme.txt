@@ -32,3 +32,9 @@ Neue Klasse erstellt für Gegner.
 
 Generieren von 100 zufalls Gegnern.
 Zufällig ein Gegner aufwählen.
+Klasse für das Kampfsystem erstellt. 
+Methode für den Kampf gegen Gegner erstellt.
+
+
+16.12.2024
+
