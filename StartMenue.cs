@@ -9,7 +9,7 @@ namespace Aincrad
 {
     internal class StartMenue
     {
-        public void StartMenueAnzeigen(Charakter meinCharakter, Gegner gegner, ReiseMenue reiseMenue, Ladebalken laed)
+        public void StartMenueAnzeigen(Charakter meinCharakter, ReiseMenue reiseMenue, Ladebalken laed)
         {
             bool zurueck = true;
 
@@ -20,6 +20,7 @@ namespace Aincrad
             {
                 string sMenue = "Start Menü";
                 string startMenueZurueck = "Du kehrst zum Start Menü zurück";
+                Gegner gegner = Gegner.GeneriereMonster();
 
                 //Auswahl des Menüs mit Pfeiltasten hoch oder runter. Mit Enter wird die Auswahl bestätigt.
                 auswahlIndex = Menue.MenueFuehrung(menueAuswahl, sMenue, "");
@@ -31,32 +32,44 @@ namespace Aincrad
                 if (auswahlIndex == 0)
                 {
                     Menue.AuswahlPlayer("Du gehst auf die Reise.");
-                    ReiseMenue.ReiseMenueAnzeige(meinCharakter, gegner);
+                    ReiseMenue.ReiseMenueAnzeige(meinCharakter);
+
                 }
                 else if (auswahlIndex == 1)
                 {
-                    Menue.AuswahlPlayer("Du bist nun in der Taverne");
-                    string[] taverne = { "Essen", "Trinken", "Schlafen", "Zurück" };
-                    int taverneAuswahl = Menue.MenueFuehrung(taverne, "Taverne", startMenueZurueck);
-                    
-                    if (taverneAuswahl == 0)
+                    while (zurueck)
                     {
-                        meinCharakter.Hp += 20;
-                        meinCharakter.Gold -= 10;
-                    }
-                    else if (taverneAuswahl == 1)
-                    {
-                        meinCharakter.Mana += 10;
-                        meinCharakter.Gold -= 5;
+                        Menue.AuswahlPlayer("Du bist nun in der Taverne");
+                        string[] taverne = { "Essen (10 Gold)", "Trinken (5 Gold)", "Schlafen (100 Gold)", "Zurück" };
+                        int taverneAuswahl = Menue.MenueFuehrung(taverne, "Taverne", "Du gehrst in die Taverne zurück.");
 
+                        if (taverneAuswahl == 0)
+                        {
+                            meinCharakter.Hp += 20;
+                            meinCharakter.Gold -= 10;
+                            Menue.AuswahlPlayer("Du hast was gegessen und deine Hp sind um 20 gesteigen.");
+                        }
+                        else if (taverneAuswahl == 1)
+                        {
+                            meinCharakter.Mana += 10;
+                            meinCharakter.Gold -= 5;
+                            Menue.AuswahlPlayer("Du hast was getrunken und dein Mana ist um 20 gesteigen.");
+                        }
+                        else if (taverneAuswahl == 2)
+                        {
+                            meinCharakter.Hp += 300;
+                            meinCharakter.Mana += 150;
+                            meinCharakter.Gold -= 100;
+                            Menue.AuswahlPlayer("Du hast geschlafen und bist jetzt ausgeruht. Deine Hp sind um 300 und dein Mana um 150 gestiegen.");
+                        }
+                        else if (taverneAuswahl == 3)
+                        {
+                            Menue.AuswahlPlayer(startMenueZurueck);
+                            zurueck = false;
+                        }
+                        Console.ReadKey();
                     }
-                    else if (taverneAuswahl == 2)
-                    {
-                        meinCharakter.Hp += 300;
-                        meinCharakter.Mana += 150;
-                        meinCharakter.Gold -= 50;
-                    }
-                    Console.ReadKey();
+                    zurueck = true;
                 }
                 else if (auswahlIndex == 2)
                 {

@@ -10,7 +10,7 @@ namespace Aincrad
     internal class Menue
     {
         public static int auswahlIndex = 0;
-        public static void MenueAnzeige(Charakter meinCharakter, Ladebalken laed, StartMenue startMenue, ReiseMenue reiseMenue,Gegner gegner) //Methode Hauptmenü
+        public static void MenueAnzeige(Charakter meinCharakter, Ladebalken laed, StartMenue startMenue, ReiseMenue reiseMenue, Gegner gegner) //Methode Hauptmenü
         {
             string hauptmenue = "Hauptmenü";
             string[] menueAuswahl = { "Spiel Starten", "Einstellungen", "Infos", "Beenden" };
@@ -28,7 +28,7 @@ namespace Aincrad
                 if (auswahlIndex == 0)
                 {
                     AuswahlPlayer("Spiel wird gestartet");
-                    startMenue.StartMenueAnzeigen(meinCharakter, gegner,reiseMenue, laed);
+                    startMenue.StartMenueAnzeigen(meinCharakter, reiseMenue, laed);
                 }
                 else if (auswahlIndex == 1)
                 {
@@ -40,11 +40,11 @@ namespace Aincrad
                     Info(meinCharakter);
                 }
                 else if (auswahlIndex == 3)
-                { 
-                break;
+                {
+                    break;
                 }
-                
-             }
+
+            }
         }
 
         public static void Info(Charakter meinCharakter)
@@ -68,13 +68,13 @@ namespace Aincrad
             //https://stackoverflow.com/questions/21917203/how-do-i-center-text-in-a-console-application
             Console.SetCursorPosition((Console.WindowWidth - titel.Length) / 2, Console.WindowHeight - 25);//Positionsbestimmung in der Konsole
             Console.WriteLine(titel);
-            
+
 
             //Schleife für die Auswahl des Menüs
             for (int i = 0; i < menueAuswahl.Length; i++)
             {
-                
-                
+
+
                 Console.CursorVisible = false; //Cursor unsichtbar
                 if (i == auswahlIndex)
                 {
@@ -117,9 +117,13 @@ namespace Aincrad
         public static void AuswahlPlayer(string text)
         {
             Console.Clear();
-            Console.SetCursorPosition((Console.WindowWidth - text.Length) / 2, Console.WindowHeight - 25);
+            Console.SetCursorPosition((Console.WindowWidth - text.Length) / 2, Console.WindowHeight - 23);
             Console.WriteLine(text);
             Console.ReadKey();
+        }
+        public static void BedingungReisen()
+        {
+
         }
     }
 }

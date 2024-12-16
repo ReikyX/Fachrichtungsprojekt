@@ -31,8 +31,25 @@ namespace Aincrad
                 }
                 Console.SetCursorPosition((Console.WindowWidth - text.Length) - 56, Console.WindowHeight - 10);
                 Console.WriteLine($"Deine Hp sind auf {meinCharakter.Hp} gesunken.");
-                Console.ReadKey();
-
+                if (gegner.HP <= 0)
+                {
+                    Console.Clear();
+                    Console.SetCursorPosition((Console.WindowWidth - text.Length) - 60, Console.WindowHeight - 8);
+                    Console.WriteLine("Du hast das Monster besiegt.");
+                    Console.ReadKey();
+                    Console.Clear();
+                }
+                if (meinCharakter.Hp<=0)
+                {
+                    Console.Clear();
+                    Console.SetCursorPosition((Console.WindowWidth - text.Length) - 60, Console.WindowHeight - 8);
+                    Console.WriteLine("Du bist leider gestorben und fängst wieder von neu an.");
+                    Console.ReadKey();
+                    Console.Clear();
+                    meinCharakter.CharakterErstellen();
+                }
+                //Console.ReadKey();
+                
                 while (weiter)
                 {
                     Console.Clear();
@@ -73,11 +90,11 @@ namespace Aincrad
                             if (meinCharakter.Exp >= meinCharakter.MaxExp)
                             {
                                 meinCharakter.Level++;
-                                meinCharakter.Hp = meinCharakter.MaxHp;
-                                meinCharakter.Mana = meinCharakter.MaxMana;
+                                meinCharakter.Hp += 50;
+                                meinCharakter.Mana += 20;
                                 meinCharakter.Intelligenz += 3;
                                 meinCharakter.Staerke += 5;
-                                meinCharakter.Gold += 200;
+                                meinCharakter.Gold += 50;
                                 meinCharakter.Exp = 0;
                             }
                             if (gegner.HP <= 0)

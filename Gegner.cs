@@ -46,51 +46,51 @@ namespace Aincrad
             //}
 
         }
-        public void ZufaelligesMonster(string text, Charakter meinCharakter, Gegner gegner)
+
+
+        public static void ZufaelligesMonster(string text, Charakter meinCharakter)
+        {
+
+            Gegner zufaelligesMonster = gegnerListe[zufallGegnerIndex];
+                //GeneriereMonster();
+
+            bool weiter = true;
+            while (weiter)
+            {
+                if (zufaelligesMonster.HP <= 0)
+                {
+                    break;
+                }
+                Console.SetCursorPosition((Console.WindowWidth - text.Length) - 94, Console.WindowHeight - 20);
+                Console.WriteLine($"Ein Monster ist erschienen: {zufaelligesMonster.Name}, Level: {zufaelligesMonster.Level}, HP: {zufaelligesMonster.HP}, Stärke: {zufaelligesMonster.Staerke}");
+                Console.SetCursorPosition((Console.WindowWidth - text.Length) - 83, Console.WindowHeight - 17);
+                Console.WriteLine("Möchtest du gegen das Monster kämpfen? (j/n)");
+                Console.SetCursorPosition((Console.WindowWidth - text.Length) / 2, Console.WindowHeight - 15);
+                string antwort = Console.ReadLine().ToLower().Trim();
+
+                if (antwort == "j")
+                {
+                    KampfSystem.CharakterVsGegner(meinCharakter, zufaelligesMonster, "Der Kampf beginnt!");
+                }
+                else if (antwort == "n")
+                {
+                    Menue.AuswahlPlayer("Du machst dich aus dem Staub.");
+                    weiter = false;
+                }
+                else
+                {
+                    Menue.AuswahlPlayer("Keine gültige eingabe");
+                    Thread.Sleep(2000);
+                    Console.Clear();
+                }
+
+            }
+        }        
+        
+        public static Gegner GeneriereMonster()
         {
             zufallGegnerIndex = zufall.Next(gegnerListe.Count);
-
-            if (gegnerListe.Count > 0)  // Prüft, ob es überhaupt Gegner in der Liste gibt
-            {
-                Gegner zufaelligesMonster = gegnerListe[zufallGegnerIndex];
-
-                bool weiter = true;
-                while (weiter)
-                {
-                    if(zufaelligesMonster.HP <= 0)
-                    {
-                        break;
-                    }
-                    Console.SetCursorPosition((Console.WindowWidth - text.Length) - 94, Console.WindowHeight - 20);
-                    Console.WriteLine($"Ein Monster ist erschienen: {zufaelligesMonster.Name}, Level: {zufaelligesMonster.Level}, HP: {zufaelligesMonster.HP}, Stärke: {zufaelligesMonster.Staerke}");
-                    Console.SetCursorPosition((Console.WindowWidth - text.Length) - 83, Console.WindowHeight - 17);
-                    Console.WriteLine("Möchtest du gegen das Monster kämpfen? (j/n)");
-                    Console.SetCursorPosition((Console.WindowWidth - text.Length) /2, Console.WindowHeight - 15);
-                    string antwort = Console.ReadLine().ToLower().Trim();
-
-
-                    if (antwort == "j")
-                    {
-                        KampfSystem.CharakterVsGegner(meinCharakter, zufaelligesMonster,"Der Kampf beginnt!");
-                    }
-                    else if (antwort == "n")
-                    {
-                        Menue.AuswahlPlayer("Du machst dich aus dem Staub.");
-                        weiter = false;
-                    }
-                    else
-                    {
-                        Menue.AuswahlPlayer("Keine gültige eingabe");
-                        Thread.Sleep(2000);
-                        Console.Clear();
-                    }
-
-                }
-            }
-            else
-            {
-                Console.WriteLine("Keine Gegner in der Liste.");
-            }
+            return gegnerListe[zufallGegnerIndex];
         }
 
     }
