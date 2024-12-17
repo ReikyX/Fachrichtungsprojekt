@@ -12,6 +12,7 @@ namespace Aincrad
         public static int auswahlIndex = 0;
         public static void MenueAnzeige(Charakter meinCharakter, Ladebalken laed, StartMenue startMenue, ReiseMenue reiseMenue, Gegner gegner) //Methode Hauptmenü
         {
+
             string hauptmenue = "Hauptmenü";
             string[] menueAuswahl = { "Spiel Starten", "Einstellungen", "Infos", "Beenden" };
             auswahlIndex = 0;
@@ -120,10 +121,6 @@ namespace Aincrad
             Console.SetCursorPosition((Console.WindowWidth - text.Length) / 2, Console.WindowHeight - 23);
             Console.WriteLine(text);
             Console.ReadKey();
-        }
-        public static void BedingungReisen()
-        {
-
         }
     }
 }

@@ -76,8 +76,6 @@ namespace Aincrad
                 rasseIndex = Menue.MenueFuehrung(auswahlRassen, "Wähle deine Rasse aus!", "");
                 Console.SetCursorPosition((Console.WindowWidth / 2) - 17, Console.WindowHeight - 28);
                 Console.WriteLine($"Du hast die Klasse {auswahlRassen[rasseIndex]} ausgewählt.");
-                Console.SetCursorPosition((Console.WindowWidth / 2) - 12, Console.WindowHeight /2);
-                Console.WriteLine("Du gelangst ins Hauptmenü.");
                 GewaehlteRasse = auswahlRassen[rasseIndex];
                 Console.ReadKey();
                 Console.Clear();
@@ -125,6 +123,11 @@ namespace Aincrad
             }
         }
 
+
+        public static void Inventar()
+        {
+
+        }
     }
 }
 

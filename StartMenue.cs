@@ -79,14 +79,40 @@ namespace Aincrad
                 }
                 else if (auswahlIndex == 3)
                 {
-                    Menue.AuswahlPlayer("Du bist nun beim Händler im Laden.");
-                    string[] haendler = { "Handeln", "Zurück" };
-                    Menue.MenueFuehrung(haendler, "Händler Laden", startMenueZurueck);
+                    while (zurueck)
+                    {
+                        Menue.AuswahlPlayer("Du bist nun beim Händler im Laden.");
+                        string[] haendler = { "Waffen", "Rüstung", "Tränke", "Zurück" };
+                        int haendlerauswahl = Menue.MenueFuehrung(haendler, "Händler Laden", startMenueZurueck);
+                        if (haendlerauswahl == 0)
+                        {
+                            Console.Clear();
+                            List<Gegenstaende>verfuegbareWaffen = Waffen.WaffenGenerieren("Händler: Dies sind meine Waffen:\n");
+                            Console.ReadKey();
+                        }
+                        else if (haendlerauswahl == 1)
+                        {
+                            Console.Clear();
+                            Ruestungen.RuestungGenerieren("Händler: Dies sind meine Rüstungen:\n");
+                            Console.ReadKey();
+                        }
+                        else if (haendlerauswahl == 2)
+                        {
+                            Console.Clear();
+                            Traenke.TraenkeGenerieren("Händler: Dies sind meine Tränke:\n");
+                            Console.ReadKey();
+                        }
+                        else if (haendlerauswahl == 3)
+                        {
+                            Menue.AuswahlPlayer(startMenueZurueck);
+                            zurueck = false;
+                        }
+                    }
                 }
                 else if (auswahlIndex == 4)
                 {
                     Menue.AuswahlPlayer("Du krammst in deinem Inventar");
-                    string[] inventar = { "Zurück" };
+                    string[] inventar = { "Waffen", "Rüstung", "Tränke", "Zurück" };
                     Menue.MenueFuehrung(inventar, "Dein Inventar.", startMenueZurueck);
                 }
                 else if (auswahlIndex == 5)

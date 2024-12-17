@@ -17,7 +17,7 @@
             //laed.Stauts();
             //laed.FliegendeFestung();
             //aincrad.SpielInfo();
-            meinCharakter.CharakterErstellen();
+            //meinCharakter.CharakterErstellen();
             Menue.MenueAnzeige(meinCharakter, laed, startMenue, reiseMenue, gegner);
             
             Console.ReadKey();

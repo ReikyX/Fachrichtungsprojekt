@@ -48,7 +48,6 @@ namespace Aincrad
                     Console.Clear();
                     meinCharakter.CharakterErstellen();
                 }
-                //Console.ReadKey();
                 
                 while (weiter)
                 {
@@ -67,7 +66,7 @@ namespace Aincrad
                             Console.Clear();
                             meinCharakter.CharakterErstellen();
                             weiter = false;
-                            break;
+                            return; ;
                         }
                         else if (meinCharakter.Hp == gegner.Staerke)
                         {
@@ -77,9 +76,8 @@ namespace Aincrad
                             Console.WriteLine("Du bist gestorben und fängst wieder von vorne an.");
                             Console.ReadKey();
                             Console.Clear();
-                            meinCharakter.CharakterErstellen();
                             weiter = false;
-                            break;
+                            return;
                         }
                         else
                         {
@@ -108,7 +106,7 @@ namespace Aincrad
                     else if (antwort == "n")
                     {
                         UngueltigGueltig("Du machst dich aus dem Staub.");
-                        break;
+                        return;
                     }
                     else
                     {

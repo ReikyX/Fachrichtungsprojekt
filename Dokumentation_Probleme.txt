@@ -35,6 +35,7 @@ Zufällig ein Gegner aufwählen.
 Klasse für das Kampfsystem erstellt. 
 Methode für den Kampf gegen Gegner erstellt.
 
+--------------------------------------------------------------------------------------------------------------------------------
 
 16.12.2024
 
@@ -42,3 +43,8 @@ Kampfsystem weiter ausgebaut.
 Bedingungen für die Reiseziele erstellt.
 Gold implementiert.
 Taverne hat nun möglichkeiten zu Essen, Trinken und Schlafen.
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+17.12.2024
+
