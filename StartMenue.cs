@@ -88,18 +88,36 @@ namespace Aincrad
                         {
                             Console.Clear();
                             List<Gegenstaende>verfuegbareWaffen = Waffen.WaffenGenerieren("Händler: Dies sind meine Waffen:\n");
+                            Console.Write("\n\nWähle deine Waffe die du kaufen möchtest aus: ");
+                            int auswahl = int.Parse(Console.ReadLine()) -1;
+                            if (auswahl >= 0 && auswahl < verfuegbareWaffen.Count)
+                            {
+                                Charakter.HinzufuegenInventar(verfuegbareWaffen[auswahl]);
+                            }
                             Console.ReadKey();
                         }
                         else if (haendlerauswahl == 1)
                         {
                             Console.Clear();
-                            Ruestungen.RuestungGenerieren("Händler: Dies sind meine Rüstungen:\n");
+                            List<Gegenstaende>verfuegbareRuestungen = Ruestungen.RuestungGenerieren("Händler: Dies sind meine Rüstungen:\n");
+                            Console.Write("\n\nWähle deine Ausrüstung die du kaufen möchtest aus: ");
+                            int auswahl = int.Parse(Console.ReadLine()) -1;
+                            if (auswahl >= 0 && auswahl < verfuegbareRuestungen.Count)
+                            {
+                                Charakter.HinzufuegenInventar(verfuegbareRuestungen[auswahl]);
+                            }
                             Console.ReadKey();
                         }
                         else if (haendlerauswahl == 2)
                         {
                             Console.Clear();
-                            Traenke.TraenkeGenerieren("Händler: Dies sind meine Tränke:\n");
+                            List<Gegenstaende>verfuegbareTraenke = Traenke.TraenkeGenerieren("Händler: Dies sind meine Tränke:\n");
+                            Console.Write("\n\nWähle deine Waffe die du kaufen möchtest aus: ");
+                            int auswahl = int.Parse(Console.ReadLine()) -1;
+                            if (auswahl >= 0 && auswahl < verfuegbareTraenke.Count)
+                            {
+                                Charakter.HinzufuegenInventar(verfuegbareTraenke[auswahl]);
+                            }
                             Console.ReadKey();
                         }
                         else if (haendlerauswahl == 3)
@@ -108,37 +126,27 @@ namespace Aincrad
                             zurueck = false;
                         }
                     }
+                    zurueck = true;
                 }
                 else if (auswahlIndex == 4)
                 {
                     Menue.AuswahlPlayer("Du krammst in deinem Inventar");
-                    string[] inventar = { "Waffen", "Rüstung", "Tränke", "Zurück" };
+                    string[] inventar = Charakter.Inventar.Select(obj => $"Item: {obj.Name}        Wert: {obj.Wert}").ToArray();
                     Menue.MenueFuehrung(inventar, "Dein Inventar.", startMenueZurueck);
                 }
                 else if (auswahlIndex == 5)
-                {
-                    Menue.AuswahlPlayer("Du gehst in den Stall");
-                    string[] reittiere = { "Zurück" };
-                    Menue.MenueFuehrung(reittiere, "Deine Reittiere/Begleiter.", startMenueZurueck);
-                }
-                else if (auswahlIndex == 6)
                 {
                     Menue.AuswahlPlayer("Du gelangst zur Charakterübersicht");
                     string[] charUebersicht = { "Zurück" };
                     Menue.Info(meinCharakter);
                     Menue.MenueFuehrung(charUebersicht, "", startMenueZurueck);
                 }
-                else if (auswahlIndex == 7)
+                else if (auswahlIndex == 6)
                 {
-                    string a = "Du kehrst ins Hauptmenü zurück.";
-                    Console.Clear();
-                    Console.SetCursorPosition((Console.WindowWidth - a.Length) / 2, Console.WindowHeight / 2);
-                    Console.WriteLine(a);
+                    Menue.AuswahlPlayer("Du kehrst ins Hauptmenü zurück.");
                     zurueck = false;
                 }
-
                 continue;
-
             }
         }
     }

@@ -21,6 +21,7 @@ namespace Aincrad
         private int gold = 100;
         private string charakterName;
         private string gewaehlteRasse;
+        public static List<Gegenstaende> Inventar = new List<Gegenstaende>();
 
         public int Level { get => level; set => level = value; }
         public int Hp { get => hp; set => hp = value; }
@@ -123,10 +124,10 @@ namespace Aincrad
             }
         }
 
-
-        public static void Inventar()
+        public static void HinzufuegenInventar(Gegenstaende i)
         {
-
+            Inventar.Add(i);
+            Console.WriteLine(i.Name + " wurde zu deinem Inventar hinzugefügt.");
         }
     }
 }

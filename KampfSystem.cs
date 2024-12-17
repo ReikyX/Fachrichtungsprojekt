@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static System.Net.Mime.MediaTypeNames;
+using System.Diagnostics;
 
 namespace Aincrad
 {
@@ -45,8 +46,7 @@ namespace Aincrad
                     Console.SetCursorPosition((Console.WindowWidth - text.Length) - 60, Console.WindowHeight - 8);
                     Console.WriteLine("Du bist leider gestorben und fängst wieder von neu an.");
                     Console.ReadKey();
-                    Console.Clear();
-                    meinCharakter.CharakterErstellen();
+                    Program.Neu();
                 }
                 
                 while (weiter)
@@ -60,24 +60,18 @@ namespace Aincrad
                     {
                         if (meinCharakter.Hp <= gegner.Staerke)
                         {
-                            Console.Clear();
-                            Console.WriteLine("Du bist gestorben und fängst wieder von vorne an.");
-                            Console.ReadKey();
-                            Console.Clear();
-                            meinCharakter.CharakterErstellen();
-                            weiter = false;
-                            return; ;
+                            Menue.AuswahlPlayer("Du bist gestorben und fängst wieder von vorne an.");
+                            Program.Neu();
                         }
                         else if (meinCharakter.Hp == gegner.Staerke)
                         {
                             Console.Clear();
                             Console.WriteLine("Bist du dir sicher ?");
                             meinCharakter.Hp -= gegner.Staerke;
-                            Console.WriteLine("Du bist gestorben und fängst wieder von vorne an.");
+                            Menue.AuswahlPlayer("Du bist gestorben und fängst wieder von vorne an.");
                             Console.ReadKey();
                             Console.Clear();
-                            weiter = false;
-                            return;
+                            Program.Neu();
                         }
                         else
                         {

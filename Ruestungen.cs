@@ -16,7 +16,7 @@ namespace Aincrad
             return $"Rüstung: {Name}\t\t-\t\tVerteidigung: {Wert}";
         }
 
-        public static void RuestungGenerieren(string text)
+        public static List<Gegenstaende> RuestungGenerieren(string text)
         {
             List<Gegenstaende> RuestungenListe = new List<Gegenstaende>();
             Random zufall = new Random();
@@ -33,6 +33,7 @@ namespace Aincrad
             {
                 Console.WriteLine($"{i + 1}\t{RuestungenListe[i].AnzeigeInfo()}");
             }
+            return RuestungenListe;
         }
     }
 }

@@ -15,12 +15,12 @@ namespace Aincrad
             return $"Trank: {Name}\t\t-\t\tHp Heilung: {Wert}";
         }
 
-        public static void TraenkeGenerieren(string text)
+        public static List<Gegenstaende> TraenkeGenerieren(string text)
         {
             List<Gegenstaende> TraenkeListe = new List<Gegenstaende>();
             Random zufall = new Random();
 
-            string[] traenkeName = { "Helm", "Rüstung", "Schild", "Stiefel", "Handschuhe" };
+            string[] traenkeName = { "Kleiner Heiltrank", "Großer Heiltrank", "Elixier", "Regenerationstrank" };
 
             for (int i = 0; i < 20; i++)
             {
@@ -33,6 +33,7 @@ namespace Aincrad
             {
                 Console.WriteLine($"{i+1}\t{TraenkeListe[i].AnzeigeInfo()}");
             }
+            return TraenkeListe;
         }
     }
 }

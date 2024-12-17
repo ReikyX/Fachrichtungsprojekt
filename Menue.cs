@@ -14,7 +14,7 @@ namespace Aincrad
         {
 
             string hauptmenue = "Hauptmenü";
-            string[] menueAuswahl = { "Spiel Starten", "Einstellungen", "Infos", "Beenden" };
+            string[] menueAuswahl = { "Spiel Starten", "Infos", "Beenden" };
             auswahlIndex = 0;
 
             while (true)
@@ -33,14 +33,10 @@ namespace Aincrad
                 }
                 else if (auswahlIndex == 1)
                 {
-                    AuswahlPlayer("Hier sind die Einstellungen");
-                }
-                else if (auswahlIndex == 2)
-                {
                     Console.Clear();
                     Info(meinCharakter);
                 }
-                else if (auswahlIndex == 3)
+                else if (auswahlIndex == 2)
                 {
                     break;
                 }
