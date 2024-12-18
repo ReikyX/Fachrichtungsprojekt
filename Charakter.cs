@@ -85,7 +85,7 @@ namespace Aincrad
                 //Je nach auswahl des Benutzers werden die Attribute für die jeweilige Klasse überschrieben/übernommen.
                 if (rasseIndex == 0) //Mensch
                 {
-                    Level = 0;
+                    Level = 1;
                     Hp = 200;
                     Staerke = 20;
                     Mana = 15;
@@ -93,7 +93,7 @@ namespace Aincrad
                 }
                 else if (rasseIndex == 1) //Hoch-Elf
                 {
-                    Level = 0;
+                    Level = 1;
                     Hp = 300;
                     Staerke = 10;
                     Mana = 30;
@@ -101,7 +101,7 @@ namespace Aincrad
                 }
                 else if (rasseIndex == 2) //Dunkel-Elf
                 {
-                    Level = 0;
+                    Level = 1;
                     Hp = 300;
                     Staerke = 15;
                     Mana = 20;
@@ -109,7 +109,7 @@ namespace Aincrad
                 }
                 else if (rasseIndex == 3) //Zwerg
                 {
-                    Level = 0;
+                    Level = 1;
                     Hp = 300;
                     Staerke = 30;
                     Mana = 10;
@@ -117,7 +117,7 @@ namespace Aincrad
                 }
                 else if (rasseIndex == 4) //Ork
                 {
-                    Level = 0;
+                    Level = 1;
                     Hp = 400;
                     Staerke = 40;
                     Mana = 5;

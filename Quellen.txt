@@ -6,3 +6,5 @@ https://www.asciiart.eu/image-to-ascii //FliegendeFestung Ascii-Art
 https://stackoverflow.com/questions/21917203/how-do-i-center-text-in-a-console-application //Ausgabe in der Konsole Zentrieren
 
 https://stackoverflow.com/questions/46908148/controlling-menu-with-the-arrow-keys-and-enter //Menüführung durch Pfeiltasten
+
+https://www.perplexity.ai/

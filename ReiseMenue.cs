@@ -12,9 +12,9 @@ namespace Aincrad
         public static void ReiseMenueAnzeige(Charakter meinCharakter)
         {
             bool zurueck = true;
-            
 
-            string[] menueAuswahl = { "Verfluchte Stadt", "Wald", "Wüste", "Schloss des Tyrannen", "Dungeon", "Zurück" };
+
+            string[] menueAuswahl = { "Verfluchte Stadt (Lv.1)", "Wald (Lv.30)", "Wüste (Lv.50)", "Schloss des Tyrannen (Lv.70)", "Dungeon (Lv.90)", "Zurück" };
             int auswahlIndex = 0;
 
             while (zurueck)
@@ -31,62 +31,64 @@ namespace Aincrad
                 }
                 if (auswahlIndex == 0)
                 {
-                    Menue.AuswahlPlayer("Du bist in der Stadt.");
-                    if (gegner.Level > 50) //Bedingungen für den Charakter wenn der Gegner über Lvl.50 ist soll kein Monster zum Kampf angegeben werden.
+                    Menue.AuswahlPlayer("Du bist in der Verluchten Stadt.");
+                    do
                     {
-                        Menue.AuswahlPlayer("Kein Monster gefunden.");
+                        gegner = Gegner.AuswahlZufaelligesMonster();
                     }
-                    else if (gegner.Level > 0 && gegner.Level <= 50) //weitere Bedingung für den Kampf Monster zwischen 0 und 50 werden für den kampf angegeben.
-                    {
-                        Gegner.ZufaelligesMonster("", meinCharakter);
-                    }
+                    while (gegner.Level >= 50);
+                    Gegner.ZufaelligesMonster("", meinCharakter);
                 }
                 else if (auswahlIndex == 1)
                 {
                     Menue.AuswahlPlayer("Du bist nun im Wald.");
-                    if (meinCharakter.Level <= 30)
+                    if (meinCharakter.Level < 30)
                     {
                         Menue.AuswahlPlayer("Dein Level ist zu niedrig.");
                     }
-                    else if (gegner.Level <= 30)
+                    else if (meinCharakter.Level >= 30)
                     {
-                        Console.WriteLine("Kein Monster gefunden.");
-                    }
-                    else if (gegner.Level > 30 && gegner.Level < 70)
-                    {
+                        do
+                        {
+                            gegner = Gegner.AuswahlZufaelligesMonster();
+                        }
+                        while (gegner.Level <= 50 || gegner.Level >= 70);
                         Gegner.ZufaelligesMonster("", meinCharakter);
                     }
-
                 }
                 else if (auswahlIndex == 2)
                 {
                     Menue.AuswahlPlayer("Du bist nun in der heißen Wüste.");
-                    if (meinCharakter.Level <= 50)
+                    if (meinCharakter.Level < 50)
                     {
                         Menue.AuswahlPlayer("Dein Level ist zu niedrig.");
                     }
-                    else if (gegner.Level < 50)
+                    else if (meinCharakter.Level >= 50)
                     {
-                        Console.WriteLine("Kein Monster gefunden.");
-                    }
-                    else if (gegner.Level >= 50 && gegner.Level <= 90)
-                    {
+                        do
+                        {
+                            gegner = Gegner.AuswahlZufaelligesMonster();
+                        }
+                        while (gegner.Level <= 50 || gegner.Level >= 90);
                         Gegner.ZufaelligesMonster("", meinCharakter);
                     }
+
                 }
                 else if (auswahlIndex == 3)
                 {
-                    Menue.AuswahlPlayer("Du bist nun im Schloss von Aincrad.");
-                    if (meinCharakter.Level <= 70)
+                    Menue.AuswahlPlayer("Du bist nun im Schloss des Tyrannen.");
+
+                    if (meinCharakter.Level < 70)
                     {
                         Menue.AuswahlPlayer("Dein Level ist zu niedrig.");
                     }
-                    else if (gegner.Level < 70)
+                    else if (meinCharakter.Level >= 70)
                     {
-                        Console.WriteLine("Kein Monster gefunden.");
-                    }
-                    else if (gegner.Level >= 70 && gegner.Level <= 120)
-                    {
+                        do
+                        {
+                            gegner = Gegner.AuswahlZufaelligesMonster();
+                        }
+                        while (gegner.Level <= 70 || gegner.Level >= 120);
                         Gegner.ZufaelligesMonster("", meinCharakter);
                     }
                 }
@@ -94,16 +96,17 @@ namespace Aincrad
                 {
                     Menue.AuswahlPlayer("Du begibst dich in den Dungeon.");
 
-                    if (meinCharakter.Level <= 90)
+                    if (meinCharakter.Level < 90)
                     {
                         Menue.AuswahlPlayer("Dein Level ist zu niedrig.");
                     }
-                    else if (gegner.Level <= 90)
+                    else if (meinCharakter.Level >= 90)
                     {
-                        Console.WriteLine("Kein Monster gefunden.");
-                    }
-                    else if (gegner.Level > 90)
-                    {
+                        do
+                        {
+                            gegner = Gegner.AuswahlZufaelligesMonster();
+                        }
+                        while (gegner.Level <= 90);
                         Gegner.ZufaelligesMonster("", meinCharakter);
                     }
                 }

@@ -54,9 +54,9 @@ namespace Aincrad
                     Console.Clear();
                     Console.WriteLine($"Gegner: {gegner.Name}\t\tLevel: {gegner.Level}\t\tHP {gegner.HP}\t\tStärke: {gegner.Staerke}\n");
                     Console.WriteLine($"Charakter: {meinCharakter.CharakterName}\t\tLevel: {meinCharakter.Level}\t\tStärke: {meinCharakter.Staerke}\t\tHP: {meinCharakter.Hp}\t\tExp: {meinCharakter.Exp}/{meinCharakter.MaxExp}\n\n");
-                    Console.SetCursorPosition((Console.WindowWidth - text.Length) / 2, Console.WindowHeight - 13);
+                    Console.SetCursorPosition((Console.WindowWidth /2 ) - text.Length, Console.WindowHeight - 13);
                     Console.WriteLine("Möchtest du weiter kämpfen? (j/n)");
-                    Console.SetCursorPosition((Console.WindowWidth - text.Length) / 2, Console.WindowHeight - 11);
+                    Console.SetCursorPosition((Console.WindowWidth /2) - text.Length, Console.WindowHeight - 11);
                     string antwort = Console.ReadLine().ToLower().Trim();
                     if (antwort == "j")
                     {
