@@ -56,10 +56,17 @@ namespace Aincrad
                         }
                         else if (taverneAuswahl == 2)
                         {
-                            meinCharakter.Hp += 300;
-                            meinCharakter.Mana += 150;
-                            meinCharakter.Gold -= 100;
-                            Menue.AuswahlPlayer("Du hast geschlafen und bist jetzt ausgeruht. Deine Hp sind um 300 und dein Mana um 150 gestiegen.");
+                            if (meinCharakter.Hp >= meinCharakter.MaxHp || meinCharakter.Hp >= meinCharakter.Hp +300)
+                            {
+                                { }
+                            }
+                            else
+                            {
+                                meinCharakter.Hp += 300;
+                                meinCharakter.Mana += 150;
+                                meinCharakter.Gold -= 100;
+                                Menue.AuswahlPlayer("Du hast geschlafen und bist jetzt ausgeruht. Deine Hp sind um 300 und dein Mana um 150 gestiegen.");
+                            }
                         }
                         else if (taverneAuswahl == 3)
                         {
@@ -82,7 +89,7 @@ namespace Aincrad
                             Console.Clear();
                             List<Gegenstaende> verfuegbareWaffen = Waffen.WaffenGenerieren("Händler: Dies sind meine Waffen:\n");//Waffen werden generiert und an in der Liste gespeichert bzw. an die Liste übergeben.
                             Console.Write("\n\nWähle deine Waffe die du kaufen möchtest aus: ");
-                            if (int.TryParse(Console.ReadLine(), out int auswahl))
+                            if (int.TryParse(Console.ReadLine(), out int auswahl)) //TryParse mit KI optimiert
                             {
                                 auswahl--;
                                 if (auswahl >= 0 && auswahl < verfuegbareWaffen.Count)
@@ -92,6 +99,7 @@ namespace Aincrad
                                     {
                                         Charakter.HinzufuegenInventar(verfuegbareWaffen[auswahl]);//Ausgewählte Waffe wird einer neuen Liste hinzugefügt
                                         meinCharakter.Gold -= ausgewaehlteWaffe.gold;
+                                        meinCharakter.Staerke += ausgewaehlteWaffe.Wert;
                                         Menue.AuswahlPlayer($"Du hast {ausgewaehlteWaffe.Name} für {ausgewaehlteWaffe.gold} Gold gekauft.");
                                     }
                                     else
@@ -122,6 +130,7 @@ namespace Aincrad
                                     {
                                         Charakter.HinzufuegenInventar(verfuegbareRuestungen[auswahl]);//Ausgewählte Waffe wird einer neuen Liste hinzugefügt
                                         meinCharakter.Gold -= ausgewaehlteRuestung.gold;
+                                        meinCharakter.Hp += ausgewaehlteRuestung.Wert;
                                         Menue.AuswahlPlayer($"Du hast {ausgewaehlteRuestung.Name} für {ausgewaehlteRuestung.gold} Gold gekauft.");
                                     }
                                     else
@@ -152,6 +161,7 @@ namespace Aincrad
                                     {
                                         Charakter.HinzufuegenInventar(verfuegbareTraenke[auswahl]);//Ausgewählte Waffe wird einer neuen Liste hinzugefügt
                                         meinCharakter.Gold -= ausgewaehlteTraenke.gold;
+                                        meinCharakter.Hp += ausgewaehlteTraenke.Wert;
                                         Menue.AuswahlPlayer($"Du hast {ausgewaehlteTraenke.Name} für {ausgewaehlteTraenke.gold} Gold gekauft.");
                                     }
                                     else
