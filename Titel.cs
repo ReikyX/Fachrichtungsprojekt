@@ -9,6 +9,7 @@ namespace Aincrad
     internal class Titel
     {
         //Speicherung von Ascii Art in einem string.
+        //https://patorjk.com/software/taag/#p=display&f=Bloody&t=Aincrad
         private string titelName = @"
                                ▄▄▄       ██▓ ███▄    █  ▄████▄   ██▀███   ▄▄▄      ▓█████▄ 
                               ▒████▄    ▓██▒ ██ ▀█   █ ▒██▀ ▀█  ▓██ ▒ ██▒▒████▄    ▒██▀ ██▌

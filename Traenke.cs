@@ -10,9 +10,9 @@ namespace Aincrad
     {
         public Traenke(string name) : base(name) { }
 
-        public override string AnzeigeInfo()
+        public override string AnzeigeInfo() //Rückgabe an die Elternklasse.
         {
-            return $"Trank: {Name}\t\t-\t\tHp Heilung: {Wert}";
+            return $"Trank: {Name}\t\t-\t\tHp Heilung: {Wert}\t-\tGold: {gold}";
         }
 
         public static List<Gegenstaende> TraenkeGenerieren(string text)

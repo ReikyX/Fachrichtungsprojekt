@@ -10,9 +10,9 @@ namespace Aincrad
     {
         public Waffen (string name) : base (name) { }
 
-        public override string AnzeigeInfo()
+        public override string AnzeigeInfo() //Rügabe an die Elternklasse
         {
-            return $"Waffe: {Name}\t\t-\t\tStärke: {Wert}"; 
+            return $"Waffe: {Name}\t-\tStärke: {Wert}\t-\tGold: {gold}"; 
         }
 
         public static List<Gegenstaende> WaffenGenerieren(string text)

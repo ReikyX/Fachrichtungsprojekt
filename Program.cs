@@ -22,11 +22,11 @@ namespace Aincrad
             gegner.MonsterGenerieren();
 
 
-            //laed.Stauts();
+            laed.Stauts();
             //laed.FliegendeFestung();
             //aincrad.SpielInfo();
-            meinCharakter.CharakterErstellen();
-            Menue.MenueAnzeige(meinCharakter, laed, startMenue, reiseMenue, gegner);
+            //meinCharakter.CharakterErstellen();
+            //Menue.MenueAnzeige(meinCharakter, laed, startMenue, reiseMenue, gegner);
 
             Console.ReadKey();
         }

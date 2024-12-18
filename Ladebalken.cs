@@ -12,7 +12,7 @@ namespace Aincrad
         private int positionUnten;
 
 
-        public void FliegendeFestung()
+        public void FliegendeFestung() //https://www.asciiart.eu/image-to-ascii
         {
             string aincradBild = @"            ................................................   @  ............................................ 
             ..............................................    @@@   .......................................... 
@@ -51,7 +51,7 @@ namespace Aincrad
         }
         public void Stauts()
         {
-
+            //Definition von größe und position
             breite = Console.WindowWidth - 70;
             positionUnten = Console.WindowHeight - 2;
 
@@ -59,24 +59,22 @@ namespace Aincrad
             int schritte = 100;
 
             Console.CursorVisible = false;
-            Console.SetCursorPosition(0, positionUnten);
-            for (int x = 0; x <= schritte; x++)
+            Console.SetCursorPosition(0, positionUnten); //Cursor Position wird bestimmt
+            for (int x = 0; x <= schritte; x++) //
             {
 
                 Console.SetCursorPosition(0, positionUnten);
 
-                float prozent = (float)x / schritte;
-                int status = (int)(breite * prozent);
+                float prozent = (float)x / schritte; //Schritte werden multipliziert mit x (umgewandelt in float)
+                int status = (int)(breite * prozent); //Prozent wird mit der vordefinierten Variable breite (umgewandelt in int) multipliziert
 
                 Console.Write("[");
                 Console.BackgroundColor = ConsoleColor.Green;
-                Console.ForegroundColor = ConsoleColor.Gray;
-
                 Console.Write(new string(' ', status));
                 Console.ResetColor();
                 Console.Write(new string(' ', breite - status));
                 Console.Write("]");
-                Console.Write($" {(int)(prozent * 100)}%");
+                Console.Write($" {(int)(prozent * 100)}%"); //Ausgabe des Status in Prozent
 
                 Thread.Sleep(50);
             }

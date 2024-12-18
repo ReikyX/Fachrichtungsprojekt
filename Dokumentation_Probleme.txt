@@ -1,37 +1,37 @@
 ﻿10.12.2024
 
 Problematik
-Charakter auswahl durch Pfeiltasten bestätigung durch Enter. -> Problem wurde gelöst
-Ausgewählte Rasse aus Kindklasse der Elternklasse übergeben. -> Problem wurde gelöst -> Übergabeparamter an Menue weiter gegeben
+Charakter Auswahl durch Pfeiltasten Bestätigung durch Enter. -> Problem wurde gelöst
+Ausgewählte Rasse aus Kindklasse der Elternklasse übergeben. -> Problem wurde gelöst -> Übergabeparameter an Menue weitergegeben
 
 --------------------------------------------------------------------------------------------------------------------------------
 
 11.12.2024
 
 Klasse Rassen aufgelöst und bei Charakter Klasse implementiert.
-Rasse durch eingabge des Players integriert.
-Je nach auswahl des Players verschiedene Attribute des Charakters.
+Rasse durch Eingabge des Players integriert.
+Je nach Auswahl des Players verschiedene Attribute des Charakters.
 Start Menü implementiert.
 
 Problematik 
-Durch Menüführung verliert man schnell den überblick.
+Durch Menüführung verliert man schnell den Überblick.
 
 --------------------------------------------------------------------------------------------------------------------------------
 
 12.12.2024
 
-Diagramm erstellung als Übersicht für Ablauf und verständnis.
+Diagramm Erstellung als Übersicht für Ablauf und Verständnis.
 Menüführung überarbeitet und Probleme korrigiert.
 Menüführung zentriert und angepasst.
-Methode erstellt um redundanz zu vermeiden.
+Methode erstellt, um Redundanz zu vermeiden.
 Neue Klasse erstellt für Gegner.
 
 --------------------------------------------------------------------------------------------------------------------------------
 
 13.12.2024
 
-Generieren von 100 zufalls Gegnern.
-Zufällig ein Gegner aufwählen.
+Generieren von 100 Zufalls Gegnern.
+Zufällig ein Gegner auswählen.
 Klasse für das Kampfsystem erstellt. 
 Methode für den Kampf gegen Gegner erstellt.
 
@@ -42,9 +42,21 @@ Methode für den Kampf gegen Gegner erstellt.
 Kampfsystem weiter ausgebaut.
 Bedingungen für die Reiseziele erstellt.
 Gold implementiert.
-Taverne hat nun möglichkeiten zu Essen, Trinken und Schlafen.
+Taverne hat nun Möglichkeiten zu Essen, Trinken und Schlafen.
 
 --------------------------------------------------------------------------------------------------------------------------------
 
 17.12.2024
 
+Problem gefixt, dass wenn der Charakter stirbt, das man nicht mehr in der Schleife bleibt sondern an den Anfang des Programms springt.
+Klasse Gegenstände erstellt. Name und Werte werden weiter gegeben an Kindklassen.
+In Kindklassen Listen erstellt für spätere Aktionen beim Händler und im Inventar.
+Aus Zeitgründen die Idee für Begleiter und Schmied sowie verworfen.
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+18.12.2024
+
+Auskommentierung des Programm Codes.
+Dokumentation begonnen.
+Anpassung der Gegenstände die generiert werden. (Gold wird mit angezeigt)

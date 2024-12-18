@@ -18,19 +18,19 @@ namespace Aincrad
         public static List<Gegner> gegnerListe;
         public static Random zufall;
         public static int zufallGegnerIndex = 0;
-        public void MonsterGenerieren()
+        public void MonsterGenerieren() //Methode zum Generieren der Gegner
         {
             gegnerListe = new List<Gegner>();
             zufall = new Random();
-
+            //String[] wurde mittels KI generiert
             string[] gegnerNamen = {"Goblin", "Ork", "Troll", "Drache", "Skelett", "Zombie", "Vampir", "Werwolf",
             "Chimäre", "Hydra", "Oger", "Zyklop", "Harpyie", "Basilisk", "Phönix",
             "Riese", "Banshee", "Ghoul", "Lich", "Golem","Dämon"};
 
-            for (int i = 0; i < 100; i++)
+            for (int i = 0; i < 200; i++) //Schleife läuft 200 mal durch.(200 Gegner)
             {
-                int level = zufall.Next(1, 101);
-                gegnerListe.Add(new Gegner
+                int level = zufall.Next(1, 201);//Hier wird immer eine zufällige Zahl zwischen 1 und 200 genommen. 201 ist ausgeschlossen.
+                gegnerListe.Add(new Gegner //Generiertes Objekt wird in die Liste hinzugefügt
                 {
                     Name = gegnerNamen[zufall.Next(gegnerNamen.Length)],
                     Level = level,
@@ -38,22 +38,13 @@ namespace Aincrad
                     Staerke = level + zufall.Next(1, 11)
                 });
             }
-            gegnerListe = gegnerListe.OrderBy(g => g.Level).ToList();
-
-            //foreach (var gegner in gegnerListe)
-            //{
-            //    Console.WriteLine($"Name: {gegner.Name}\t\tLevel: {gegner.Level}\t\tHP: {gegner.HP}\t\tStärke: {gegner.Staerke}");
-            //}
-
+            gegnerListe = gegnerListe.OrderBy(g => g.Level).ToList(); //Ordnet die Liste nach Level aufsteigend
         }
 
 
         public static void ZufaelligesMonster(string text, Charakter meinCharakter)
         {
-
-            Gegner zufaelligesMonster = gegnerListe[zufallGegnerIndex];
-                //GeneriereMonster();
-
+            Gegner zufaelligesMonster = gegnerListe[zufallGegnerIndex]; //Übergabe eines zufälligen Objekts aus der Liste 
             bool weiter = true;
             while (weiter)
             {
@@ -70,7 +61,7 @@ namespace Aincrad
 
                 if (antwort == "j")
                 {
-                    KampfSystem.CharakterVsGegner(meinCharakter, zufaelligesMonster, "Der Kampf beginnt!");
+                    KampfSystem.CharakterVsGegner(meinCharakter, zufaelligesMonster, "Der Kampf beginnt!");//Methoden aufruf für den Kampf
                 }
                 else if (antwort == "n")
                 {
@@ -83,11 +74,10 @@ namespace Aincrad
                     Thread.Sleep(2000);
                     Console.Clear();
                 }
-
             }
         }        
         
-        public static Gegner GeneriereMonster()
+        public static Gegner AuswahlZufaelligesMonster() //Zufälliger Gegner wird ausgewählt
         {
             zufallGegnerIndex = zufall.Next(gegnerListe.Count);
             return gegnerListe[zufallGegnerIndex];

@@ -11,9 +11,9 @@ namespace Aincrad
 
         public Ruestungen(string name) : base(name) { }
 
-        public override string AnzeigeInfo()
+        public override string AnzeigeInfo()//Rückgabe an die Elternklasse
         {
-            return $"Rüstung: {Name}\t\t-\t\tVerteidigung: {Wert}";
+            return $"Rüstung: {Name}\t\t-\t\tVerteidigung: {Wert}\t-\tGold: {gold}";
         }
 
         public static List<Gegenstaende> RuestungGenerieren(string text)

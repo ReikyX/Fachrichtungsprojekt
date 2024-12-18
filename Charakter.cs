@@ -8,7 +8,7 @@ namespace Aincrad
 {
     internal class Charakter
     {
-        private int level = 0;
+        private int level = 1;
         private int hp = 200;
         private int maxHp = 1000;
         private int maxLevel = 200;
@@ -21,7 +21,7 @@ namespace Aincrad
         private int gold = 100;
         private string charakterName;
         private string gewaehlteRasse;
-        public static List<Gegenstaende> Inventar = new List<Gegenstaende>();
+        public static List<Gegenstaende> Inventar = new List<Gegenstaende>(); //Liste wird erstellt zum speichern der erhaltenen Gegenständen
 
         public int Level { get => level; set => level = value; }
         public int Hp { get => hp; set => hp = value; }
@@ -41,6 +41,7 @@ namespace Aincrad
         {
 
         }
+        //Attribute werden dem Charakter zugewiesen
         public Charakter(int level, int staerke, int mana, int exp, int intelligenz,int hp, string charakterName, string gewaehlteRasse)
         {
             Level = level;
@@ -52,7 +53,7 @@ namespace Aincrad
             this.charakterName = charakterName;
         }
 
-        public void CharakterErstellen()
+        public void CharakterErstellen() //Methode zum erstellen des Charakters
         {
             Console.SetCursorPosition((Console.WindowWidth / 2) - 11, Console.WindowHeight - 25);
             Console.ForegroundColor = ConsoleColor.Black;
@@ -65,7 +66,7 @@ namespace Aincrad
             Console.WriteLine("Player Name: ");
             Console.SetCursorPosition((Console.WindowWidth / 2) - 7, Console.WindowHeight - 17);
             this.charakterName = Console.ReadLine().Trim();
-            WaehleRasse();
+            WaehleRasse(); //Methode Rassenauswahl wird aufgerufen.
         }
         public void WaehleRasse()
         {
@@ -74,12 +75,14 @@ namespace Aincrad
 
             while (true)
             {
+                //Auswahl durch den Benutzer 
                 rasseIndex = Menue.MenueFuehrung(auswahlRassen, "Wähle deine Rasse aus!", "");
                 Console.SetCursorPosition((Console.WindowWidth / 2) - 17, Console.WindowHeight - 28);
                 Console.WriteLine($"Du hast die Klasse {auswahlRassen[rasseIndex]} ausgewählt.");
                 GewaehlteRasse = auswahlRassen[rasseIndex];
                 Console.ReadKey();
                 Console.Clear();
+                //Je nach auswahl des Benutzers werden die Attribute für die jeweilige Klasse überschrieben/übernommen.
                 if (rasseIndex == 0) //Mensch
                 {
                     Level = 0;
@@ -126,7 +129,7 @@ namespace Aincrad
 
         public static void HinzufuegenInventar(Gegenstaende i)
         {
-            Inventar.Add(i);
+            Inventar.Add(i); //Hinzufügen eines Objekts in die Liste Inventar. Hierzu wird der Index genommen den der Benutzer auswählt.
             Console.WriteLine(i.Name + " wurde zu deinem Inventar hinzugefügt.");
         }
     }
