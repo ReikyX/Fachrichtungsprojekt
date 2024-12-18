@@ -80,38 +80,92 @@ namespace Aincrad
                         if (haendlerauswahl == 0)
                         {
                             Console.Clear();
-                            List<Gegenstaende>verfuegbareWaffen = Waffen.WaffenGenerieren("Händler: Dies sind meine Waffen:\n");//Waffen werden generiert und an in der Liste gespeichert bzw. an die Liste übergeben.
+                            List<Gegenstaende> verfuegbareWaffen = Waffen.WaffenGenerieren("Händler: Dies sind meine Waffen:\n");//Waffen werden generiert und an in der Liste gespeichert bzw. an die Liste übergeben.
                             Console.Write("\n\nWähle deine Waffe die du kaufen möchtest aus: ");
-                            int auswahl = int.Parse(Console.ReadLine()) -1;
-                            if (auswahl >= 0 && auswahl < verfuegbareWaffen.Count)
+                            if (int.TryParse(Console.ReadLine(), out int auswahl))
                             {
-                                Charakter.HinzufuegenInventar(verfuegbareWaffen[auswahl]);//Ausgewählte Waffe wird einer neuen Liste hinzugefügt
+                                auswahl--;
+                                if (auswahl >= 0 && auswahl < verfuegbareWaffen.Count)
+                                {
+                                    Gegenstaende ausgewaehlteWaffe = verfuegbareWaffen[auswahl];
+                                    if (meinCharakter.Gold >= ausgewaehlteWaffe.gold)
+                                    {
+                                        Charakter.HinzufuegenInventar(verfuegbareWaffen[auswahl]);//Ausgewählte Waffe wird einer neuen Liste hinzugefügt
+                                        meinCharakter.Gold -= ausgewaehlteWaffe.gold;
+                                        Menue.AuswahlPlayer($"Du hast {ausgewaehlteWaffe.Name} für {ausgewaehlteWaffe.gold} Gold gekauft.");
+                                    }
+                                    else
+                                    {
+                                        Menue.AuswahlPlayer("Du hast nicht genügend Gold.");
+                                    }
+                                }
+                                else
+                                {
+                                    Menue.AuswahlPlayer("Bitte gib eine gültige Zahl ein.");
+                                }
+                                Console.ReadKey();
                             }
-                            Console.ReadKey();
+                            else { KampfSystem.UngueltigGueltig("Keine Gültige eingabe!"); }
                         }
                         else if (haendlerauswahl == 1)
                         {
                             Console.Clear();
-                            List<Gegenstaende>verfuegbareRuestungen = Ruestungen.RuestungGenerieren("Händler: Dies sind meine Rüstungen:\n");
+                            List<Gegenstaende> verfuegbareRuestungen = Ruestungen.RuestungGenerieren("Händler: Dies sind meine Rüstungen:\n");
                             Console.Write("\n\nWähle deine Ausrüstung die du kaufen möchtest aus: ");
-                            int auswahl = int.Parse(Console.ReadLine()) -1;
-                            if (auswahl >= 0 && auswahl < verfuegbareRuestungen.Count)
+                            if (int.TryParse(Console.ReadLine(), out int auswahl))
                             {
-                                Charakter.HinzufuegenInventar(verfuegbareRuestungen[auswahl]);
+                                auswahl--;
+                                if (auswahl >= 0 && auswahl < verfuegbareRuestungen.Count)
+                                {
+                                    Gegenstaende ausgewaehlteRuestung = verfuegbareRuestungen[auswahl];
+                                    if (meinCharakter.Gold >= ausgewaehlteRuestung.gold)
+                                    {
+                                        Charakter.HinzufuegenInventar(verfuegbareRuestungen[auswahl]);//Ausgewählte Waffe wird einer neuen Liste hinzugefügt
+                                        meinCharakter.Gold -= ausgewaehlteRuestung.gold;
+                                        Menue.AuswahlPlayer($"Du hast {ausgewaehlteRuestung.Name} für {ausgewaehlteRuestung.gold} Gold gekauft.");
+                                    }
+                                    else
+                                    {
+                                        Menue.AuswahlPlayer("Du hast nicht genügend Gold.");
+                                    }
+                                }
+                                else
+                                {
+                                    Menue.AuswahlPlayer("Bitte gib eine gültige Zahl ein.");
+                                }
+                                Console.ReadKey();
                             }
-                            Console.ReadKey();
+                            else { KampfSystem.UngueltigGueltig("Keine Gültige eingabe!"); }
                         }
                         else if (haendlerauswahl == 2)
                         {
                             Console.Clear();
-                            List<Gegenstaende>verfuegbareTraenke = Traenke.TraenkeGenerieren("Händler: Dies sind meine Tränke:\n");
+                            List<Gegenstaende> verfuegbareTraenke = Traenke.TraenkeGenerieren("Händler: Dies sind meine Tränke:\n");
                             Console.Write("\n\nWähle deine Waffe die du kaufen möchtest aus: ");
-                            int auswahl = int.Parse(Console.ReadLine()) -1;
-                            if (auswahl >= 0 && auswahl < verfuegbareTraenke.Count)
+                            if (int.TryParse(Console.ReadLine(), out int auswahl))
                             {
-                                Charakter.HinzufuegenInventar(verfuegbareTraenke[auswahl]);
+                                auswahl--;
+                                if (auswahl >= 0 && auswahl < verfuegbareTraenke.Count)
+                                {
+                                    Gegenstaende ausgewaehlteTraenke = verfuegbareTraenke[auswahl];
+                                    if (meinCharakter.Gold >= ausgewaehlteTraenke.gold)
+                                    {
+                                        Charakter.HinzufuegenInventar(verfuegbareTraenke[auswahl]);//Ausgewählte Waffe wird einer neuen Liste hinzugefügt
+                                        meinCharakter.Gold -= ausgewaehlteTraenke.gold;
+                                        Menue.AuswahlPlayer($"Du hast {ausgewaehlteTraenke.Name} für {ausgewaehlteTraenke.gold} Gold gekauft.");
+                                    }
+                                    else
+                                    {
+                                        Menue.AuswahlPlayer("Du hast nicht genügend Gold.");
+                                    }
+                                }
+                                else
+                                {
+                                    Menue.AuswahlPlayer("Bitte gib eine gültige Zahl ein.");
+                                }
+                                Console.ReadKey();
                             }
-                            Console.ReadKey();
+                            else { KampfSystem.UngueltigGueltig("Keine Gültige eingabe!"); }
                         }
                         else if (haendlerauswahl == 3)
                         {

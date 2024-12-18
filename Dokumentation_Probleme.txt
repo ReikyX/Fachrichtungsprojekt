@@ -60,3 +60,4 @@ Aus Zeitgründen die Idee für Begleiter und Schmied sowie verworfen.
 Auskommentierung des Programm Codes.
 Dokumentation begonnen.
 Anpassung der Gegenstände die generiert werden. (Gold wird mit angezeigt)
+Bedingungen angepasst + in eine do-while Schleife gepackt damit man definitiv auf einen Gegner trifft.
