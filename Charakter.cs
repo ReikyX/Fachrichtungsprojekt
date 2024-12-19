@@ -19,30 +19,32 @@ namespace Aincrad
         private int exp = 0;
         private int maxExp = 200;
         private int gold = 100;
+        private int verteidigung = 0;
         private string charakterName;
         private string gewaehlteRasse;
-        public static List<Gegenstaende> Inventar = new List<Gegenstaende>(); //Liste wird erstellt zum speichern der erhaltenen Gegenständen
+        public static List<Gegenstaende> Inventar = new List<Gegenstaende>(20); //Liste wird erstellt zum speichern der erhaltenen Gegenständen
 
         public int Level { get => level; set => level = value; }
         public int Hp { get => hp; set => hp = value; }
-        public int MaxHp { get => maxHp; set => maxHp = value; }
-        public int MaxLevel { get => maxLevel; set => maxLevel = value; }
+        public int MaxHp { get => maxHp; }
+        public int MaxLevel { get => maxLevel; }
         public int Staerke { get => staerke; set => staerke = value; }
         public int Mana { get => mana; set => mana = value; }
         public int Intelligenz { get => intelligenz; set => intelligenz = value; }
         public string CharakterName { get => charakterName; }
         public string GewaehlteRasse { get => gewaehlteRasse; set => gewaehlteRasse = value; }
         public int Exp { get => exp; set => exp = value; }
-        public int MaxExp { get => maxExp; set => maxExp = value; }
-        public int MaxMana { get => maxMana; set => maxMana = value; }
+        public int MaxExp { get => maxExp; }
+        public int MaxMana { get => maxMana; }
         public int Gold { get => gold; set => gold = value; }
+        public int Verteidigung { get => verteidigung; set => verteidigung = value; }
 
         public Charakter()
         {
 
         }
         //Attribute werden dem Charakter zugewiesen
-        public Charakter(int level, int staerke, int mana, int exp, int intelligenz,int hp, string charakterName, string gewaehlteRasse)
+        public Charakter(int level, int staerke, int mana, int exp, int intelligenz, int hp, string charakterName, string gewaehlteRasse, int verteidigung)
         {
             Level = level;
             Hp = hp;
@@ -50,6 +52,7 @@ namespace Aincrad
             Mana = mana;
             Intelligenz = intelligenz;
             GewaehlteRasse = gewaehlteRasse;
+            Verteidigung = verteidigung;
             this.charakterName = charakterName;
         }
 
@@ -88,6 +91,7 @@ namespace Aincrad
                     Level = 1;
                     Hp = 200;
                     Staerke = 20;
+                    Verteidigung = 0;
                     Mana = 15;
                     Intelligenz = 15;
                 }
@@ -96,6 +100,7 @@ namespace Aincrad
                     Level = 1;
                     Hp = 300;
                     Staerke = 10;
+                    Verteidigung = 0;
                     Mana = 30;
                     Intelligenz = 25;
                 }
@@ -104,6 +109,7 @@ namespace Aincrad
                     Level = 1;
                     Hp = 300;
                     Staerke = 15;
+                    Verteidigung = 0;
                     Mana = 20;
                     Intelligenz = 20;
                 }
@@ -112,6 +118,7 @@ namespace Aincrad
                     Level = 1;
                     Hp = 300;
                     Staerke = 30;
+                    Verteidigung = 10;
                     Mana = 10;
                     Intelligenz = 10;
                 }
@@ -120,6 +127,7 @@ namespace Aincrad
                     Level = 1;
                     Hp = 400;
                     Staerke = 40;
+                    Verteidigung = 10;
                     Mana = 5;
                     Intelligenz = 5;
                 }
@@ -129,8 +137,13 @@ namespace Aincrad
 
         public static void HinzufuegenInventar(Gegenstaende i)
         {
-            Inventar.Add(i); //Hinzufügen eines Objekts in die Liste Inventar. Hierzu wird der Index genommen den der Benutzer auswählt.
-            Console.WriteLine(i.Name + " wurde zu deinem Inventar hinzugefügt.");
+            if (Inventar.Count <= 20)
+            {
+                Inventar.Add(i); //Hinzufügen eines Objekts in die Liste Inventar. Hierzu wird der Index genommen den der Benutzer auswählt.
+                Menue.AuswahlPlayer(i.Name + " wurde zu deinem Inventar hinzugefügt.");
+            }
+            else { Menue.AuswahlPlayer("Dein Inventar ist voll"); }
+
         }
     }
 }

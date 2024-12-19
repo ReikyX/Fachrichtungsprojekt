@@ -44,28 +44,84 @@ namespace Aincrad
                         //Bedingungen je nach Auswahl
                         if (taverneAuswahl == 0)
                         {
-                            meinCharakter.Hp += 20;
-                            meinCharakter.Gold -= 10;
-                            Menue.AuswahlPlayer("Du hast was gegessen und deine Hp sind um 20 gesteigen.");
-                        }
-                        else if (taverneAuswahl == 1)
-                        {
-                            meinCharakter.Mana += 10;
-                            meinCharakter.Gold -= 5;
-                            Menue.AuswahlPlayer("Du hast was getrunken und dein Mana ist um 20 gesteigen.");
-                        }
-                        else if (taverneAuswahl == 2)
-                        {
-                            if (meinCharakter.Hp >= meinCharakter.MaxHp || meinCharakter.Hp >= meinCharakter.Hp +300)
+                            if (meinCharakter.Gold >= 10)
                             {
-                                { }
+                                if (meinCharakter.Hp >= 980)
+                                {
+                                    Menue.AuswahlPlayer("Du hast deine Maximale Gesundheit erreicht.");
+                                    meinCharakter.Hp = meinCharakter.MaxHp;
+                                }
+                                else
+                                {
+                                    meinCharakter.Hp += 20;
+                                    meinCharakter.Gold -= 10;
+                                    Menue.AuswahlPlayer("Du hast was gegessen und deine Hp sind um 20 gestiegen.");
+                                }
                             }
                             else
                             {
-                                meinCharakter.Hp += 300;
-                                meinCharakter.Mana += 150;
-                                meinCharakter.Gold -= 100;
-                                Menue.AuswahlPlayer("Du hast geschlafen und bist jetzt ausgeruht. Deine Hp sind um 300 und dein Mana um 150 gestiegen.");
+                                Menue.AuswahlPlayer("Nicht genug Gold!");
+                            }
+                        }
+                        else if (taverneAuswahl == 1)
+                        {
+                            if (meinCharakter.Gold >= 5)
+                            {
+                                if (meinCharakter.Mana >= 490)
+                                {
+                                    Menue.AuswahlPlayer("Dein Mana hat das Maximum erreicht.");
+                                    meinCharakter.Mana = meinCharakter.MaxMana;
+                                }
+                                else
+                                {
+                                    meinCharakter.Mana += 10;
+                                    meinCharakter.Gold -= 5;
+                                    Menue.AuswahlPlayer("Du hast was getrunken und dein Mana ist um 10 gesteigen.");
+                                }
+                            }
+                            else
+                            {
+                                Menue.AuswahlPlayer("Nicht genug Gold!");
+                            }
+                        }
+                        else if (taverneAuswahl == 2)
+                        {
+                            if (meinCharakter.Gold >= 100)
+                            {
+                                if (meinCharakter.Hp >= 700 || meinCharakter.Mana >= 350)
+                                {
+                                    if (meinCharakter.Hp >= 700 && meinCharakter.Mana <= 350)
+                                    {
+                                        Menue.AuswahlPlayer("Du hast deine Maximale Gesundheit erreicht. Dein Mana hat sich um 150 erhöht.");
+                                        meinCharakter.Hp = meinCharakter.MaxHp;
+                                        meinCharakter.Mana += 150;
+                                        meinCharakter.Gold -= 100;
+                                    }
+                                    if (meinCharakter.Mana >= 350 && meinCharakter.Hp <= 700)
+                                    {
+                                        Menue.AuswahlPlayer("Dein Mana hat das Maximum erreicht. Deine Gesundheit ist um 300 gestiegen.");
+                                        meinCharakter.Mana = meinCharakter.MaxMana;
+                                        meinCharakter.Hp += 300;
+                                        meinCharakter.Gold -= 100;
+                                    }
+                                    if (meinCharakter.Hp >= 700 && meinCharakter.Mana >= 350)
+                                    {
+                                        Menue.AuswahlPlayer("Dein Mana und deine Gesundheit haben das Maximum erreicht.");
+                                        meinCharakter.Mana = meinCharakter.MaxMana;
+                                        meinCharakter.Hp = meinCharakter.MaxHp;
+                                    }
+                                }
+                                else
+                                {
+                                    meinCharakter.Hp += 300;
+                                    meinCharakter.Mana += 150;
+                                    meinCharakter.Gold -= 100;
+                                    Menue.AuswahlPlayer("Du hast geschlafen und bist jetzt ausgeruht. Deine Gesundheit ist um 300 und dein Mana um 150 gestiegen.");
+                                }
+                            }
+                            else
+                            {
+                                Menue.AuswahlPlayer("Nicht genug Gold!");
                             }
                         }
                         else if (taverneAuswahl == 3)
@@ -82,7 +138,7 @@ namespace Aincrad
                     while (zurueck)
                     {
                         Menue.AuswahlPlayer("Du bist nun beim Händler im Laden.");
-                        string[] haendler = { "Waffen", "Rüstung", "Tränke", "Zurück" };
+                        string[] haendler = { "Waffen", "Rüstung", "Tränke", "Verkaufen", "Zurück" };
                         int haendlerauswahl = Menue.MenueFuehrung(haendler, "Händler Laden", startMenueZurueck);//Auswahl des Benutzers wird in einer Integer Variable gespeichert.
                         if (haendlerauswahl == 0)
                         {
@@ -91,16 +147,16 @@ namespace Aincrad
                             Console.Write("\n\nWähle deine Waffe die du kaufen möchtest aus: ");
                             if (int.TryParse(Console.ReadLine(), out int auswahl)) //TryParse mit KI optimiert
                             {
-                                auswahl--;
+                                auswahl--; //hier wird die auswahl -1 gesetzt weil der Index bei 0 beginnt
                                 if (auswahl >= 0 && auswahl < verfuegbareWaffen.Count)
                                 {
                                     Gegenstaende ausgewaehlteWaffe = verfuegbareWaffen[auswahl];
                                     if (meinCharakter.Gold >= ausgewaehlteWaffe.gold)
                                     {
-                                        Charakter.HinzufuegenInventar(verfuegbareWaffen[auswahl]);//Ausgewählte Waffe wird einer neuen Liste hinzugefügt
                                         meinCharakter.Gold -= ausgewaehlteWaffe.gold;
                                         meinCharakter.Staerke += ausgewaehlteWaffe.Wert;
                                         Menue.AuswahlPlayer($"Du hast {ausgewaehlteWaffe.Name} für {ausgewaehlteWaffe.gold} Gold gekauft.");
+                                        Charakter.HinzufuegenInventar(verfuegbareWaffen[auswahl]);//Ausgewählte Waffe wird einer neuen Liste hinzugefügt
                                     }
                                     else
                                     {
@@ -128,10 +184,10 @@ namespace Aincrad
                                     Gegenstaende ausgewaehlteRuestung = verfuegbareRuestungen[auswahl];
                                     if (meinCharakter.Gold >= ausgewaehlteRuestung.gold)
                                     {
-                                        Charakter.HinzufuegenInventar(verfuegbareRuestungen[auswahl]);//Ausgewählte Waffe wird einer neuen Liste hinzugefügt
                                         meinCharakter.Gold -= ausgewaehlteRuestung.gold;
-                                        meinCharakter.Hp += ausgewaehlteRuestung.Wert;
+                                        meinCharakter.Verteidigung += ausgewaehlteRuestung.Wert;
                                         Menue.AuswahlPlayer($"Du hast {ausgewaehlteRuestung.Name} für {ausgewaehlteRuestung.gold} Gold gekauft.");
+                                        Charakter.HinzufuegenInventar(verfuegbareRuestungen[auswahl]);//Ausgewählte Waffe wird einer neuen Liste hinzugefügt
                                     }
                                     else
                                     {
@@ -150,7 +206,7 @@ namespace Aincrad
                         {
                             Console.Clear();
                             List<Gegenstaende> verfuegbareTraenke = Traenke.TraenkeGenerieren("Händler: Dies sind meine Tränke:\n");
-                            Console.Write("\n\nWähle deine Waffe die du kaufen möchtest aus: ");
+                            Console.Write("\n\nWähle deinen Trank den du kaufen möchtest aus: ");
                             if (int.TryParse(Console.ReadLine(), out int auswahl))
                             {
                                 auswahl--;
@@ -159,10 +215,10 @@ namespace Aincrad
                                     Gegenstaende ausgewaehlteTraenke = verfuegbareTraenke[auswahl];
                                     if (meinCharakter.Gold >= ausgewaehlteTraenke.gold)
                                     {
-                                        Charakter.HinzufuegenInventar(verfuegbareTraenke[auswahl]);//Ausgewählte Waffe wird einer neuen Liste hinzugefügt
                                         meinCharakter.Gold -= ausgewaehlteTraenke.gold;
                                         meinCharakter.Hp += ausgewaehlteTraenke.Wert;
                                         Menue.AuswahlPlayer($"Du hast {ausgewaehlteTraenke.Name} für {ausgewaehlteTraenke.gold} Gold gekauft.");
+                                        Charakter.HinzufuegenInventar(verfuegbareTraenke[auswahl]);//Ausgewählte Waffe wird einer neuen Liste hinzugefügt
                                     }
                                     else
                                     {
@@ -178,6 +234,36 @@ namespace Aincrad
                             else { KampfSystem.UngueltigGueltig("Keine Gültige eingabe!"); }
                         }
                         else if (haendlerauswahl == 3)
+                        {
+                            if (Charakter.Inventar.Count <= 0)
+                            {
+                                Menue.AuswahlPlayer("Du hast keine Items in deinem Inventar");
+                            }
+                            else
+                            {
+                                var inventarListe = Charakter.Inventar.Select(obj => $"Item: {obj.Name}   Wert: {obj.Wert}   Gold:{obj.gold}").ToList();
+                                inventarListe.Add("Zurück");
+                                string[] inventar = inventarListe.ToArray();
+                                int ausgewaehlterGegenstand = Menue.MenueFuehrung(inventar, "Verkaufen.", startMenueZurueck);
+                                if (ausgewaehlterGegenstand >= 0 && ausgewaehlterGegenstand < Charakter.Inventar.Count)
+                                {
+                                    var verkaufterGegenstand = Charakter.Inventar[ausgewaehlterGegenstand];
+                                    Charakter.Inventar.RemoveAt(ausgewaehlterGegenstand);
+                                    meinCharakter.Gold += verkaufterGegenstand.gold;
+                                    Menue.AuswahlPlayer($"{verkaufterGegenstand} wurde für {verkaufterGegenstand.gold} Gold verkauft.");
+                                }
+                                else if (ausgewaehlterGegenstand == inventar.Length -1)
+                                {
+                                    Menue.AuswahlPlayer("Verkauf wurde abgebrochen");
+                                }
+                                else
+                                {
+                                    KampfSystem.UngueltigGueltig("Ungültige auswahl");
+                                }
+                            }
+
+                        }
+                        else if (haendlerauswahl == 4)
                         {
                             Menue.AuswahlPlayer(startMenueZurueck);
                             zurueck = false;

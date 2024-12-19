@@ -61,3 +61,10 @@ Auskommentierung des Programm Codes.
 Dokumentation begonnen.
 Anpassung der Gegenstände die generiert werden. (Gold wird mit angezeigt)
 Bedingungen angepasst + in eine do-while Schleife gepackt damit man definitiv auf einen Gegner trifft.
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+19.12.2024
+
+Inventar Liste auf 20 Objekte beschränkt.
+Bedingungen in der Taverne optimiert.

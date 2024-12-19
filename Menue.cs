@@ -44,16 +44,27 @@ namespace Aincrad
         public static void Info(Charakter meinCharakter) //Metode zum Anzeigen der aktuellen Attribute des Charakters
         {
             Console.Clear();
-            Console.WriteLine("\t\t\t\t\tHier sind deine Infos zu deinem Charakter\n\n\n");
-            Console.WriteLine($"\t\t\t\t\t\tName:\t\t{meinCharakter.CharakterName}");
-            Console.WriteLine($"\t\t\t\t\t\tRasse:\t\t{meinCharakter.GewaehlteRasse}");
-            Console.WriteLine($"\t\t\t\t\t\tHP:\t\t{meinCharakter.Hp}/{meinCharakter.MaxHp}");
-            Console.WriteLine($"\t\t\t\t\t\tLevel:\t\t{meinCharakter.Level}/{meinCharakter.MaxLevel}");
-            Console.WriteLine($"\t\t\t\t\t\tExp:\t\t{meinCharakter.Exp}/{meinCharakter.MaxExp}");
-            Console.WriteLine($"\t\t\t\t\t\tMana\t\t{meinCharakter.Mana}/{meinCharakter.MaxMana}");
-            Console.WriteLine($"\t\t\t\t\t\tStärke:\t\t{meinCharakter.Staerke}");
-            Console.WriteLine($"\t\t\t\t\t\tIntelligenz:\t{meinCharakter.Intelligenz}");
-            Console.WriteLine($"\n\t\t\t\t\t\tGold:\t\t{meinCharakter.Gold}");
+            AuswahlPlayer($"Hier sind deine Infos zu deinem Charakter");
+            Console.SetCursorPosition((Console.WindowWidth - 2) - 69 , Console.WindowHeight - 19);
+            Console.WriteLine($"Name:\t\t{meinCharakter.CharakterName}");
+            Console.SetCursorPosition((Console.WindowWidth - 2) - 69, Console.WindowHeight - 18);
+            Console.WriteLine($"Rasse:\t\t{meinCharakter.GewaehlteRasse}");
+            Console.SetCursorPosition((Console.WindowWidth - 2) - 69, Console.WindowHeight - 17);
+            Console.WriteLine($"HP:\t\t{meinCharakter.Hp}/{meinCharakter.MaxHp}");
+            Console.SetCursorPosition((Console.WindowWidth - 2) - 69, Console.WindowHeight - 16);
+            Console.WriteLine($"Level:\t\t{meinCharakter.Level}/{meinCharakter.MaxLevel}");
+            Console.SetCursorPosition((Console.WindowWidth - 2) - 69, Console.WindowHeight - 15);
+            Console.WriteLine($"Exp:\t\t{meinCharakter.Exp}/{meinCharakter.MaxExp}");
+            Console.SetCursorPosition((Console.WindowWidth - 2) - 69, Console.WindowHeight - 14);
+            Console.WriteLine($"Mana\t\t{meinCharakter.Mana}/{meinCharakter.MaxMana}");
+            Console.SetCursorPosition((Console.WindowWidth - 2) - 69, Console.WindowHeight - 13);
+            Console.WriteLine($"Stärke:\t{meinCharakter.Staerke}");
+            Console.SetCursorPosition((Console.WindowWidth - 2) - 69, Console.WindowHeight - 12);
+            Console.WriteLine($"Verteidigung:\t{meinCharakter.Verteidigung}");
+            Console.SetCursorPosition((Console.WindowWidth - 2) - 69, Console.WindowHeight - 11);
+            Console.WriteLine($"Intelligenz:\t{meinCharakter.Intelligenz}");
+            Console.SetCursorPosition((Console.WindowWidth - 2) - 69, Console.WindowHeight - 8);
+            Console.WriteLine($"Gold:\t\t{meinCharakter.Gold}");
             Console.ReadKey();
         }
         private static void MenueAnzeige(string[] menueAuswahl, string titel, int cursorPos)
