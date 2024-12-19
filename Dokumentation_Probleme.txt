@@ -67,4 +67,6 @@ Bedingungen angepasst + in eine do-while Schleife gepackt damit man definitiv au
 19.12.2024
 
 Inventar Liste auf 20 Objekte beschränkt.
+Inventar Auswahlmöglichkeit 'Zurück' hinzugefügt.
 Bedingungen in der Taverne optimiert.
+Verkauf implementiert beim Händler.

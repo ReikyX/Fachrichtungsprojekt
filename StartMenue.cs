@@ -241,6 +241,7 @@ namespace Aincrad
                             }
                             else
                             {
+                                // Ai & Lehrer wurden zu rate gezogen und dementsprechend Fehler korrigiert.
                                 var inventarListe = Charakter.Inventar.Select(obj => $"Item: {obj.Name}   Wert: {obj.Wert}   Gold:{obj.gold}").ToList();
                                 inventarListe.Add("Zurück");
                                 string[] inventar = inventarListe.ToArray();
@@ -250,7 +251,7 @@ namespace Aincrad
                                     var verkaufterGegenstand = Charakter.Inventar[ausgewaehlterGegenstand];
                                     Charakter.Inventar.RemoveAt(ausgewaehlterGegenstand);
                                     meinCharakter.Gold += verkaufterGegenstand.gold;
-                                    Menue.AuswahlPlayer($"{verkaufterGegenstand} wurde für {verkaufterGegenstand.gold} Gold verkauft.");
+                                    Menue.AuswahlPlayer($"{verkaufterGegenstand.Name} wurde für {verkaufterGegenstand.gold} Gold verkauft.");
                                 }
                                 else if (ausgewaehlterGegenstand == inventar.Length -1)
                                 {
@@ -261,7 +262,6 @@ namespace Aincrad
                                     KampfSystem.UngueltigGueltig("Ungültige auswahl");
                                 }
                             }
-
                         }
                         else if (haendlerauswahl == 4)
                         {
@@ -277,8 +277,10 @@ namespace Aincrad
                     //Konvertiert das Inventar in ein Array von Strings
                     //Select Methode -> wandelt jedes Objekt im Inventar in einen String um.
                     //Das Ergebnis wird hier zu einer Array konvertiert mit der Methode ToArray().
-                    string[] inventar = Charakter.Inventar.Select(obj => $"Item: {obj.Name}   Wert: {obj.Wert}").ToArray();
-                    Menue.MenueFuehrung(inventar, "Dein Inventar.", startMenueZurueck);
+                    var inventarListe = Charakter.Inventar.Select(obj => $"Item: {obj.Name}   Wert: {obj.Wert}   Gold:{obj.gold}").ToList();
+                    inventarListe.Add("Zurück");
+                    string[] inventar = inventarListe.ToArray();
+                    Menue.MenueFuehrung(inventar, "Inventar", startMenueZurueck);
                 }
                 else if (auswahlIndex == 4)
                 {

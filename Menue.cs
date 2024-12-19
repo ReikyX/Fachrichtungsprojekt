@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Media;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NAudio.Wave;
+using NAudio.Wave.SampleProviders;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace Aincrad
@@ -10,11 +13,12 @@ namespace Aincrad
     internal class Menue
     {
         public static int auswahlIndex = 0;
-
+        public static AudioFileReader audioDateiLesen;
+        public static WaveOutEvent ausgabeGeraet;
         public static void MenueAnzeige(Charakter meinCharakter, Ladebalken laed, StartMenue startMenue, ReiseMenue reiseMenue, Gegner gegner) //Methode Hauptmenü
         {
             string hauptmenue = "Hauptmenü";
-            string[] menueAuswahl = { "Spiel Starten", "Infos", "Beenden" };
+            string[] menueAuswahl = { "Spiel Starten", "Einstellung Sound", "Infos", "Beenden" };
             auswahlIndex = 0;
 
             while (true)
@@ -32,10 +36,55 @@ namespace Aincrad
                 }
                 else if (auswahlIndex == 1)
                 {
+                    while (true)
+                    {
+                        AuswahlPlayer("Hier sind die Sound Einstellungen.");
+                        string[] auswahl = { "Lauter", "Leiser", "Ein/Aus", "Zurück" };
+                        int auswahlSound = Menue.MenueFuehrung(auswahl, "Sound Einstellung", "");
+                        if (auswahlSound == 0)//Lauter
+                        {
+                            if (audioDateiLesen.Volume < 1.0f)
+                            { audioDateiLesen.Volume = Math.Min(audioDateiLesen.Volume + 0.1f, 1.0f); }
+                            else
+                            {
+                                Menue.AuswahlPlayer("Maximale Lautsärke erreicht.");
+                            }
+                        }
+                        else if (auswahlSound == 1)//Leiser
+                        {
+                            if (audioDateiLesen.Volume > 0.0f)
+                            { audioDateiLesen.Volume = Math.Max(audioDateiLesen.Volume - 0.1f, 0.0f); }
+                            else
+                            {
+                                Menue.AuswahlPlayer("Minimale Lautsärke erreicht.");
+                            }
+                        }
+                        else if (auswahlSound == 2)
+                        {
+                            if ( audioDateiLesen.Volume > 0.0f)
+                            {
+                                audioDateiLesen.Volume = 0.0f;
+                                Menue.AuswahlPlayer("Sound Aus");
+                            }
+                            else
+                            { 
+                                audioDateiLesen.Volume = 0.5f;
+                                Menue.AuswahlPlayer("Sound Ein");
+                            }
+                        }
+                        else if (auswahlSound == 3)//Zurück
+                        {
+                            Menue.AuswahlPlayer("Du kehrst ins Startmenü zurück.");
+                            break;
+                        }
+                    }
+                }
+                else if (auswahlIndex == 2)
+                {
                     Console.Clear();
                     Info(meinCharakter);
                 }
-                else if (auswahlIndex == 2)
+                else if (auswahlIndex == 3)
                 {
                     break;
                 }
@@ -45,7 +94,7 @@ namespace Aincrad
         {
             Console.Clear();
             AuswahlPlayer($"Hier sind deine Infos zu deinem Charakter");
-            Console.SetCursorPosition((Console.WindowWidth - 2) - 69 , Console.WindowHeight - 19);
+            Console.SetCursorPosition((Console.WindowWidth - 2) - 69, Console.WindowHeight - 19);
             Console.WriteLine($"Name:\t\t{meinCharakter.CharakterName}");
             Console.SetCursorPosition((Console.WindowWidth - 2) - 69, Console.WindowHeight - 18);
             Console.WriteLine($"Rasse:\t\t{meinCharakter.GewaehlteRasse}");
@@ -125,6 +174,30 @@ namespace Aincrad
             Console.SetCursorPosition((Console.WindowWidth - text.Length) / 2, Console.WindowHeight - 23);
             Console.WriteLine(text);
             Console.ReadKey();
+        }
+        public static void MusikEinstellung()
+        {
+            //Hier wurde mit AI gearbeitet
+            audioDateiLesen = new AudioFileReader("C:/Users/FriesErik/source/repos/Fachrichtungsprojekt/Aincrad/bin/Debug/net8.0/RetroGamingSound.wav");
+            ausgabeGeraet = new WaveOutEvent();
+            ausgabeGeraet.Init(audioDateiLesen);
+            audioDateiLesen.Volume = 0.5f;
+
+            ausgabeGeraet.Play();
+
+            bool spieltAb = true;
+            Thread musikThread = new Thread(() =>
+            {
+                while (spieltAb)
+                {
+                    if (audioDateiLesen.Position >= audioDateiLesen.Length)
+                    {
+                        audioDateiLesen.Position = 0; // Zurück zum Anfang
+                    }
+                    Thread.Sleep(100); // Kurze Pause zur Reduzierung der CPU-Last
+                }
+            });
+            musikThread.Start();
         }
     }
 }

@@ -1,4 +1,8 @@
 ﻿using Microsoft.CSharp.RuntimeBinder;
+using System;
+using System.Media;
+using NAudio.Wave;
+using System.Diagnostics;
 
 namespace Aincrad
 {
@@ -12,6 +16,7 @@ namespace Aincrad
         public static void Neu()
         {
             Console.Clear();
+            Menue.MusikEinstellung();
             Ladebalken laed = new Ladebalken();
             Titel aincrad = new Titel();
             Gegner gegner = new Gegner();
